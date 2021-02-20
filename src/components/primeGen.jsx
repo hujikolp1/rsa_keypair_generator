@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react'
 
+
+
+
+
+
+
 const PrimeGen = (...props) => {
 
     const [primeArr, setPrimeArr] = useState([])
@@ -7,15 +13,14 @@ const PrimeGen = (...props) => {
     const [randoPrime1, setRandoPrime1] = useState(null)
     const [randoPrime2, setRandoPrime2] = useState(null)
     const [e, setE] = useState(null)
+    const [d, setD] = useState(null)
+
+    const [test,setTest] = useState(null)
 
 
     useEffect(() => {
         let primes = genPrimeArr()
         setPrimeArr(primes)
-
-        let genE = generateE()
-        console.log('------ ', genE)
-        setE(genE)
 
         return () => {}
     }, [primeArr, randoPrime1, randoPrime2])
@@ -26,10 +31,16 @@ const PrimeGen = (...props) => {
         console.log('inputValue e -> ', e.target.parentNode[0].value)
     }
 
+    const handleTest = () => {
+        // let a = math.evaluate('3+4')
+        // setTest(a)
+    }
+
     //-------------------------------------
     const genPrimeArr = () => {
-        let firstN = 297
-
+        // some max prime number firstN, can also be higher
+        // will run into time propblems if too high 
+        let firstN = 97
         for (let n = firstN; n >= 2; n--) {
             let checker = true
             for(let i=2;i<firstN/2;i++){
@@ -41,7 +52,6 @@ const PrimeGen = (...props) => {
             if(checker === true){
                 primeArr.push(n)
             }
-            
         }
         return primeArr          
     }
@@ -59,13 +69,14 @@ const PrimeGen = (...props) => {
             setRandoPrime2(random2)
 
         }
-        console.log('index 1 -> ', randoPrime1)
-        console.log('index 2 -> ', randoPrime2)
-
-        // let genE = generateE()
-        // console.log('------ ', genE)
-        // setE(genE)
-
+    }
+    const genE = () => {
+        let genE = generateE()
+        setE(genE)
+    }
+    const genD = () => {
+        let genD = generateD()
+        setD(genD) 
     }
     //-------------------------------------
     const gcd = (a, b) => {
@@ -100,6 +111,24 @@ const PrimeGen = (...props) => {
     //-------------------------------------
     const generateD = () => {
         // d*e = 1 mod N 
+        let d=1; 
+        if(e !== null){
+            let phiN = (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1)
+            while( ((d*e) % phiN !== 1) && d<10000 ){
+                console.log('d -> ', (d*e) % phiN)
+                if((d*e) % phiN === 1 ){
+                    console.log("FOUND ONE D ",d)
+                    break
+                }
+                d++
+            }
+            if(d===10000){
+                d = 'try again'
+            }
+            return d
+        } else {
+            return null 
+        }
     }
 
 
@@ -108,7 +137,7 @@ const PrimeGen = (...props) => {
     
     return(
         <div>
-           <h1>Prime Generator</h1><br></br> 
+           <h1>Crypto Message</h1><br></br> 
 
            {/* <form>
                 <input></input>
@@ -119,9 +148,13 @@ const PrimeGen = (...props) => {
            Prime 1: {primeArr[randoPrime1]} <br></br>
            Prime 2: {primeArr[randoPrime2]} <br></br>
            N: { primeArr[randoPrime1] * primeArr[randoPrime2] } <br></br>
-           Phi(N): { (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1) } <br></br>
-           e: {e} <br></br>
-           d: {} <br></br>
+           Phi(N): { (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1) } <br></br><br></br>
+           <button onClick={()=>genE()}>Get E</button> <br></br>
+           e: {e} <br></br><br></br>
+           <button onClick={()=>genD()}>Get D</button> <br></br>
+           d: {d} <br></br><br></br>
+           <button onClick={()=>handleTest()}>test</button> <br></br>
+           test: {test}
            {/* Other Primes: {primeArr.map( (i)=>{
                return <span>{i}</span>
            })} <br></br> */}
