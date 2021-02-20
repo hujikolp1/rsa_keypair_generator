@@ -13,8 +13,12 @@ const PrimeGen = (...props) => {
         let primes = genPrimeArr()
         setPrimeArr(primes)
 
+        let genE = generateE()
+        console.log('------ ', genE)
+        setE(genE)
+
         return () => {}
-    }, [primeArr, randoPrime1, randoPrime2, e])
+    }, [primeArr, randoPrime1, randoPrime2])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -22,6 +26,7 @@ const PrimeGen = (...props) => {
         console.log('inputValue e -> ', e.target.parentNode[0].value)
     }
 
+    //-------------------------------------
     const genPrimeArr = () => {
         let firstN = 297
 
@@ -40,7 +45,7 @@ const PrimeGen = (...props) => {
         }
         return primeArr          
     }
-
+    //-------------------------------------
     const genRandomPrimes = () => {
         let random1 = Math.floor(Math.random()*(primeArr.length)) 
         setRandoPrime1(random1)
@@ -57,53 +62,48 @@ const PrimeGen = (...props) => {
         console.log('index 1 -> ', randoPrime1)
         console.log('index 2 -> ', randoPrime2)
 
-    }
+        // let genE = generateE()
+        // console.log('------ ', genE)
+        // setE(genE)
 
+    }
+    //-------------------------------------
     const gcd = (a, b) => {
         if (!b) {
             return a;
         }
         return gcd(b, a % b);
     }
-
+    //-------------------------------------
     const generateE = () => {
         // e is gt 1 and lt Phi(N)
         // e is coprime with N and Phi(N)
-        if(primeArr.length>0){
-
-        
-
+        let findE; 
+        if(randoPrime1 || randoPrime2){
             let N = primeArr[randoPrime1] * primeArr[randoPrime2]
             console.log('N -> ', N)
             let phiN = (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1)
             console.log('phiN -> ', phiN)
             
-            let firstReqE = Math.floor(Math.random()*(phiN-2)+2)
-            console.log("  e before-> ", firstReqE)
+            findE = Math.floor(Math.random()*(phiN-2)+2)
+            console.log("  e before-> ", findE)
 
-            while(gcd(firstReqE,N)!==1){
-                firstReqE--
+            while(gcd(findE,N)!==1 && gcd(findE,phiN)!==1){
+                findE--
             }
-            while(gcd(firstReqE,phiN)!==1){
-                firstReqE--
-            }
-            console.log("  after-> ", firstReqE)
+            console.log("  after-> ", findE)
+            return findE
+        } else {
+            return null
         }
-
-
-
     }
-    generateE()
+    //-------------------------------------
+    const generateD = () => {
+        // d*e = 1 mod N 
+    }
 
-    // let tester = Math.floor(Math.random()*((270*196)-2)+2)
-    // console.log('===== ', tester)
-    // while(gcd(tester,(271*197))!==1){
-    //     tester--
-    // }
-    // while(gcd(tester,(270*196))!==1){
-    //     tester--
-    // }
-    // console.log('after ===== ', tester)
+
+
     
     
     return(
