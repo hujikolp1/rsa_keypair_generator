@@ -9,13 +9,18 @@ import React, {useState, useEffect} from 'react'
 const PrimeGen = (...props) => {
 
     const [primeArr, setPrimeArr] = useState([])
-    const [inputValue, setInputValue] = useState(null)
     const [randoPrime1, setRandoPrime1] = useState(null)
     const [randoPrime2, setRandoPrime2] = useState(null)
     const [e, setE] = useState(null)
     const [d, setD] = useState(null)
 
+    const [genPrimesDisplay, setGenPrimesDisplay]=useState(true)
+    const [genEDisplay, setGenEDisplay]=useState('none')
+    const [genDDisplay, setGenDDisplay]=useState('none')
+    const [displayOK, setDisplayOK]=useState('none')
+
     const [test,setTest] = useState(null)
+    // const [inputValue, setInputValue] = useState(null)
 
 
     useEffect(() => {
@@ -23,12 +28,19 @@ const PrimeGen = (...props) => {
         setPrimeArr(primes)
 
         return () => {}
-    }, [primeArr, randoPrime1, randoPrime2])
+
+    }, [primeArr, randoPrime1, randoPrime2, displayOK])
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setInputValue(e.target.parentNode[0].value)
+        // setInputValue(e.target.parentNode[0].value)
         console.log('inputValue e -> ', e.target.parentNode[0].value)
+    }
+    const handleOK = () => {
+        setDisplayOK('none')
+        setPrimeArr([]);
+        setE(null)
+        setD(null)
     }
 
     const handleTest = () => {
@@ -67,9 +79,14 @@ const PrimeGen = (...props) => {
                 random2 = Math.floor(Math.random()*(primeArr.length)) 
             }
             setRandoPrime2(random2)
-
         }
+        if(e!==undefined) setE(null)
+        if(d!==undefined) setD(null)
+        if(displayOK==='inline-block') setDisplayOK('none')
+        
+        setGenEDisplay('inline-block');
     }
+    //-------------------------------------
     const genE = () => {
         let genE = generateE()
         setE(genE)
@@ -103,6 +120,7 @@ const PrimeGen = (...props) => {
                 findE--
             }
             console.log("  after-> ", findE)
+            setGenDDisplay('inline-block')
             return findE
         } else {
             return null
@@ -123,13 +141,20 @@ const PrimeGen = (...props) => {
                 d++
             }
             if(d===10000){
-                d = 'try again'
+                d = 'D computation is larger than 10000. Generate Primes Again.'
+                setGenEDisplay('none');
+                setGenDDisplay('none');
+                setDisplayOK('inline-block')
             }
             return d
         } else {
             return null 
         }
     }
+    //-------------------------------------
+    var styles = {
+        
+      }
 
 
 
@@ -137,7 +162,8 @@ const PrimeGen = (...props) => {
     
     return(
         <div>
-           <h1>Crypto Message</h1><br></br> 
+           <h1>Crypto Generator</h1><br></br> 
+           <div class="geeks"></div> <br></br><br></br>
 
            {/* <form>
                 <input></input>
@@ -148,13 +174,21 @@ const PrimeGen = (...props) => {
            Prime 1: {primeArr[randoPrime1]} <br></br>
            Prime 2: {primeArr[randoPrime2]} <br></br>
            N: { primeArr[randoPrime1] * primeArr[randoPrime2] } <br></br>
-           Phi(N): { (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1) } <br></br><br></br>
-           <button onClick={()=>genE()}>Get E</button> <br></br>
+           &#x3D5;(N): { (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1) } <br></br><br></br>
+           
+           <button onClick={()=>genE()} style={{display:`${genEDisplay}`}}>Get E</button> <br></br>
            e: {e} <br></br><br></br>
-           <button onClick={()=>genD()}>Get D</button> <br></br>
-           d: {d} <br></br><br></br>
-           <button onClick={()=>handleTest()}>test</button> <br></br>
-           test: {test}
+           
+           <button onClick={()=>genD()} style={{display:`${genDDisplay}`}}>Get D</button> <br></br>
+           d: {d} <br></br>
+           <button onClick={()=>handleOK()} style={{display:`${displayOK}`}}>OK</button>
+           <br></br>
+           
+
+
+           {/* <button onClick={()=>handleTest()}>test</button> <br></br>
+           test: {test} */}
+
            {/* Other Primes: {primeArr.map( (i)=>{
                return <span>{i}</span>
            })} <br></br> */}
