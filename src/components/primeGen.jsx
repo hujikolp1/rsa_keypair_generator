@@ -163,23 +163,25 @@ const PrimeGen = (...props) => {
     return(
         <div>
            <h1>Crypto Generator</h1><br></br> 
-           <div class="geeks"></div> <br></br><br></br>
 
            {/* <form>
                 <input></input>
                 <button type='submit' onClick={(e)=>handleSubmit(e)}>Message</button>
            </form> <br></br> */}
 
-           <button onClick={()=>genRandomPrimes()}>Get Random Primes</button> <br></br><br></br>
-           Prime 1: {primeArr[randoPrime1]} <br></br>
-           Prime 2: {primeArr[randoPrime2]} <br></br>
-           N: { primeArr[randoPrime1] * primeArr[randoPrime2] } <br></br>
-           &#x3D5;(N): { (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1) } <br></br><br></br>
-           
-           <button onClick={()=>genE()} style={{display:`${genEDisplay}`}}>Get E</button> <br></br>
+           <button className="geeks" onClick={()=>genRandomPrimes()}>Get Random Primes</button> <br></br><br></br>
+           <React.Fragment>
+               <div>Prime 1: {primeArr[randoPrime1]} <br></br> </div>
+                
+                Prime 2: {primeArr[randoPrime2]} <br></br>
+                N: { primeArr[randoPrime1] * primeArr[randoPrime2] } <br></br>
+                &#x3D5;(N): { (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1) } <br></br><br></br>
+           </React.Fragment>
+
+           <button className="geeks" onClick={()=>genE()} style={{display:`${genEDisplay}`}}>Get E</button> <br></br>
            e: {e} <br></br><br></br>
            
-           <button onClick={()=>genD()} style={{display:`${genDDisplay}`}}>Get D</button> <br></br>
+           <button className="geeks" onClick={()=>genD()} style={{display:`${genDDisplay}`}}>Get D</button> <br></br>
            d: {d} <br></br>
            <button onClick={()=>handleOK()} style={{display:`${displayOK}`}}>OK</button>
            <br></br>
