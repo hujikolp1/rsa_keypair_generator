@@ -82,6 +82,7 @@ const PrimeGen = (...props) => {
         }
         if(e!==undefined) setE(null)
         if(d!==undefined) setD(null)
+        if(!d && e!==undefined) setGenDDisplay('none')
         if(displayOK==='inline-block') setDisplayOK('none')
         
         setGenEDisplay('inline-block');
@@ -146,6 +147,11 @@ const PrimeGen = (...props) => {
                 setGenDDisplay('none');
                 setDisplayOK('inline-block')
             }
+            // otherwise success
+            // open up input box
+            // take input and output the encrypted
+            // open up decrypt box
+            // take input and output the decrypted original (if success)
             return d
         } else {
             return null 
@@ -154,7 +160,7 @@ const PrimeGen = (...props) => {
     //-------------------------------------
     var styles = {
         
-      }
+    }
 
 
 
@@ -162,27 +168,31 @@ const PrimeGen = (...props) => {
     
     return(
         <div>
-           <h1>Crypto Generator</h1><br></br> 
+           <h1 style={{color:'white'}}>Crypto Generator</h1><br></br> 
 
            {/* <form>
                 <input></input>
                 <button type='submit' onClick={(e)=>handleSubmit(e)}>Message</button>
            </form> <br></br> */}
 
-           <button className="geeks" onClick={()=>genRandomPrimes()}>Get Random Primes</button> <br></br><br></br>
-           <React.Fragment>
+           <button className="hover_buttons" onClick={()=>genRandomPrimes()}><strong>Get Random Primes</strong></button> <br></br><br></br>
+           <div className='get_random_primes'>
                <div>Prime 1: {primeArr[randoPrime1]} <br></br> </div>
                 
                 Prime 2: {primeArr[randoPrime2]} <br></br>
                 N: { primeArr[randoPrime1] * primeArr[randoPrime2] } <br></br>
                 &#x3D5;(N): { (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1) } <br></br><br></br>
-           </React.Fragment>
+           </div>
+           <div className='get_e'>
+                <button className="hover_buttons" onClick={()=>genE()} style={{display:`${genEDisplay}`}}><strong>Get E</strong></button> <br></br>
+                e: {e} <br></br><br></br>               
+           </div>
 
-           <button className="geeks" onClick={()=>genE()} style={{display:`${genEDisplay}`}}>Get E</button> <br></br>
-           e: {e} <br></br><br></br>
-           
-           <button className="geeks" onClick={()=>genD()} style={{display:`${genDDisplay}`}}>Get D</button> <br></br>
-           d: {d} <br></br>
+           <div className='get_d'>
+                <button className="hover_buttons" onClick={()=>genD()} style={{display:`${genDDisplay}`}}><strong>Get D</strong></button> <br></br>
+                d: {d} <br></br>               
+           </div>
+
            <button onClick={()=>handleOK()} style={{display:`${displayOK}`}}>OK</button>
            <br></br>
            
