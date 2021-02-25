@@ -1,11 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
 
-
-
-
-
-
 const PrimeGen = (...props) => {
 
     const [primeArr, setPrimeArr] = useState([])
@@ -18,9 +13,11 @@ const PrimeGen = (...props) => {
     const [genEDisplay, setGenEDisplay]=useState('none')
     const [genDDisplay, setGenDDisplay]=useState('none')
     const [displayOK, setDisplayOK]=useState('none')
+    const [successD, setSuccessD]=useState('none')
+    const [mainGenerator, setMainGenerator]=useState('inline-block')
 
     const [test,setTest] = useState(null)
-    // const [inputValue, setInputValue] = useState(null)
+    const [inputValue, setInputValue] = useState(null)
 
 
     useEffect(() => {
@@ -33,7 +30,7 @@ const PrimeGen = (...props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // setInputValue(e.target.parentNode[0].value)
+        setInputValue(e.target.parentNode[0].value)
         console.log('inputValue e -> ', e.target.parentNode[0].value)
     }
     const handleOK = () => {
@@ -52,7 +49,7 @@ const PrimeGen = (...props) => {
     const genPrimeArr = () => {
         // some max prime number firstN, can also be higher
         // will run into time propblems if too high 
-        let firstN = 97
+        let firstN = 149
         for (let n = firstN; n >= 2; n--) {
             let checker = true
             for(let i=2;i<firstN/2;i++){
@@ -83,6 +80,7 @@ const PrimeGen = (...props) => {
         if(e!==undefined) setE(null)
         if(d!==undefined) setD(null)
         if(!d && e!==undefined) setGenDDisplay('none')
+        if(d!==undefined && e!==undefined) setGenDDisplay('none')
         if(displayOK==='inline-block') setDisplayOK('none')
         
         setGenEDisplay('inline-block');
@@ -142,7 +140,7 @@ const PrimeGen = (...props) => {
                 d++
             }
             if(d===10000){
-                d = 'D computation is larger than 10000. Generate Primes Again.'
+                d = 'computation is larger than 10000. Generate Primes Again.'
                 setGenEDisplay('none');
                 setGenDDisplay('none');
                 setDisplayOK('inline-block')
@@ -152,6 +150,8 @@ const PrimeGen = (...props) => {
             // take input and output the encrypted
             // open up decrypt box
             // take input and output the decrypted original (if success)
+            if(d<10000)setSuccessD('inline-block'); 
+            if(d<10000)setMainGenerator('none')
             return d
         } else {
             return null 
@@ -168,33 +168,65 @@ const PrimeGen = (...props) => {
     
     return(
         <div>
-           <h1 style={{color:'white'}}>Crypto Generator</h1><br></br> 
+            <h1 style={{color:'white'}}>Crypto Generator</h1><br></br> 
 
-           {/* <form>
-                <input></input>
-                <button type='submit' onClick={(e)=>handleSubmit(e)}>Message</button>
-           </form> <br></br> */}
+            <div style={{display:`${mainGenerator}`}}>
+                <button className="hover_buttons" onClick={()=>genRandomPrimes()}><strong>Get Random Primes</strong></button> <br></br><br></br>
+                <div className='get_random_primes'>
+                    <div>Prime 1: {primeArr[randoPrime1]} <br></br> </div>
 
-           <button className="hover_buttons" onClick={()=>genRandomPrimes()}><strong>Get Random Primes</strong></button> <br></br><br></br>
-           <div className='get_random_primes'>
-               <div>Prime 1: {primeArr[randoPrime1]} <br></br> </div>
-                
-                Prime 2: {primeArr[randoPrime2]} <br></br>
-                N: { primeArr[randoPrime1] * primeArr[randoPrime2] } <br></br>
-                &#x3D5;(N): { (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1) } <br></br><br></br>
-           </div>
-           <div className='get_e'>
-                <button className="hover_buttons" onClick={()=>genE()} style={{display:`${genEDisplay}`}}><strong>Get E</strong></button> <br></br>
-                e: {e} <br></br><br></br>               
-           </div>
+                    Prime 2: {primeArr[randoPrime2]} <br></br>
+                    N: { primeArr[randoPrime1] * primeArr[randoPrime2] } <br></br>
+                    &#x3D5;(N): { (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1) } <br></br><br></br>
+                </div>
+                <div className='get_e'>
+                    <button className="hover_buttons" onClick={()=>genE()} style={{display:`${genEDisplay}`}}><strong>Get E</strong></button> <br></br>
+                    e: {e} <br></br><br></br>               
+                </div>
 
-           <div className='get_d'>
-                <button className="hover_buttons" onClick={()=>genD()} style={{display:`${genDDisplay}`}}><strong>Get D</strong></button> <br></br>
-                d: {d} <br></br>               
-           </div>
+                <div className='get_d'>
+                    <button className="hover_buttons" onClick={()=>genD()} style={{display:`${genDDisplay}`}}><strong>Get D</strong></button> <br></br>
+                    d: {d} <br></br>               
+                </div>
 
-           <button onClick={()=>handleOK()} style={{display:`${displayOK}`}}>OK</button>
-           <br></br>
+                <button onClick={()=>handleOK()} style={{display:`${displayOK}`}}>OK</button>
+                <br></br>
+
+            </div>
+
+            <div style={{display:`${successD}`}}>
+                <table className='get_random_primes'>
+                    <th>
+                        N
+                    </th>
+                    <tr>
+                        <td>{primeArr[randoPrime1] * primeArr[randoPrime2]}</td>
+                    </tr>
+
+                </table> <br></br>
+                    
+                <table className='get_random_primes'>
+
+                    <th>
+                        Keys
+                    </th>
+                    <tr>
+                        <td>{e}</td>
+                    </tr>
+                    <tr>
+                        <td>{d}</td>
+                    </tr>
+                </table> <br></br>
+
+                    
+                    {/* <form>
+                        <input></input>
+                        <button type='submit' onClick={(e)=>handleSubmit(e)}>Message</button>
+                    </form> <br></br> */}
+
+
+
+            </div>
            
 
 

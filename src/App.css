@@ -28,9 +28,9 @@ body {
   width: 80px; 
   height: 80px; 
   background: rgb(0, 26, 255); 
-  border-radius: 50%; 
+  border-radius: 30%; 
   box-shadow: 0 0 20px rgb(97, 134, 255), 
-              0 0 40px rgb(0, 27, 117),  
+              0 0 40px rgb(97, 134, 255),  
               0 0 60px rgb(0, 27, 117),  
               0 0 80px rgb(0, 27, 117),  
               0 0 120px rgb(0, 27, 117), 
