@@ -15,9 +15,18 @@ const PrimeGen = (...props) => {
     const [displayOK, setDisplayOK]=useState('none')
     const [successD, setSuccessD]=useState('none')
     const [mainGenerator, setMainGenerator]=useState('inline-block')
+    const [finalCryptoPairs,setFinalCryptoPairs]=useState({
+        N:null,e:null,d:null
+    })
 
     const [test,setTest] = useState(null)
     const [inputValue, setInputValue] = useState(null)
+
+    // interface FinalCryptoPairs {
+    //     N: Number; 
+    //     e: Number;
+    //     d: Number; 
+    // }
 
 
     useEffect(() => {
@@ -151,6 +160,7 @@ const PrimeGen = (...props) => {
             // open up decrypt box
             // take input and output the decrypted original (if success)
             if(d<10000)setSuccessD('inline-block'); 
+            // setFinalCryptoPairs(N, e, d)
             if(d<10000)setMainGenerator('none')
             return d
         } else {

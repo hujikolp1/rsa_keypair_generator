@@ -1,5 +1,5 @@
 import React from 'react';
-import PrimeGen from './components/primeGen'
+import PrimeGen from './components/primeGen.tsx'
 import './App.css';
 
 function App() {
