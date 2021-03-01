@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
 
 
-const PrimeGen = (...props) => {
+const PrimeGen = (..._props: any[]) => {
 
-    const [primeArr, setPrimeArr] = useState([])
-    const [randoPrime1, setRandoPrime1] = useState(null)
-    const [randoPrime2, setRandoPrime2] = useState(null)
-    const [e, setE] = useState(null)
-    const [d, setD] = useState(null)
+    const [primeArr, setPrimeArr] = useState<Array<number>>([])
+    const [randoPrime1, setRandoPrime1] = useState<number>(1)
+    const [randoPrime2, setRandoPrime2] = useState<number>(1)
+    const [e, setE] = useState<number>(1)
+    const [d, setD] = useState<number|string>(1)
+    const [N, setN] = useState<number>(primeArr[randoPrime1] * primeArr[randoPrime2])
 
     const [genPrimesDisplay, setGenPrimesDisplay]=useState(true)
     const [genEDisplay, setGenEDisplay]=useState('none')
@@ -15,17 +16,26 @@ const PrimeGen = (...props) => {
     const [displayOK, setDisplayOK]=useState('none')
     const [successD, setSuccessD]=useState('none')
     const [mainGenerator, setMainGenerator]=useState('inline-block')
-    const [finalCryptoPairs,setFinalCryptoPairs]=useState({
-        N:null,e:null,d:null
+    const [finalCryptoPairs,setFinalCryptoPairs]=useState<FinalCryptoPairs>({
+        N:0,e:0,d:0
     })
 
     const [test,setTest] = useState(null)
     const [inputValue, setInputValue] = useState(null)
 
-    // interface FinalCryptoPairs {
-    //     N: Number; 
-    //     e: Number;
-    //     d: Number; 
+    interface FinalCryptoPairs {
+        N: Number; 
+        e: Number;
+        d: Number|string; 
+    }
+
+
+    // type StringRecord = {
+    //     [index: string]: number;
+    // };
+      
+    // interface IStringRecord {
+    //     [index: string]: number;
     // }
 
 
@@ -37,7 +47,7 @@ const PrimeGen = (...props) => {
 
     }, [primeArr, randoPrime1, randoPrime2, displayOK])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: { preventDefault: () => void; target: { parentNode: { value: any }[] } }) => {
         e.preventDefault()
         setInputValue(e.target.parentNode[0].value)
         console.log('inputValue e -> ', e.target.parentNode[0].value)
@@ -45,8 +55,8 @@ const PrimeGen = (...props) => {
     const handleOK = () => {
         setDisplayOK('none')
         setPrimeArr([]);
-        setE(null)
-        setD(null)
+        setE(0)
+        setD(0)
     }
 
     const handleTest = () => {
@@ -86,8 +96,8 @@ const PrimeGen = (...props) => {
             }
             setRandoPrime2(random2)
         }
-        if(e!==undefined) setE(null)
-        if(d!==undefined) setD(null)
+        if(e!==undefined) setE(0)
+        if(d!==undefined) setD(0)
         if(!d && e!==undefined) setGenDDisplay('none')
         if(d!==undefined && e!==undefined) setGenDDisplay('none')
         if(displayOK==='inline-block') setDisplayOK('none')
@@ -104,11 +114,13 @@ const PrimeGen = (...props) => {
         setD(genD) 
     }
     //-------------------------------------
-    const gcd = (a, b) => {
+    const gcd = (a:number, b:number):number => {
         if (!b) {
             return a;
         }
-        return gcd(b, a % b);
+        let aModB:number = a % b; 
+        // return gcd (b, a%b)
+        return gcd ( b, aModB );
     }
     //-------------------------------------
     const generateE = () => {
@@ -131,25 +143,26 @@ const PrimeGen = (...props) => {
             setGenDDisplay('inline-block')
             return findE
         } else {
-            return null
+            return 0
         }
     }
     //-------------------------------------
     const generateD = () => {
         // d*e = 1 mod N 
-        let d=1; 
+        let dd:number|string=1; 
         if(e !== null){
             let phiN = (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1)
-            while( ((d*e) % phiN !== 1) && d<10000 ){
-                console.log('d -> ', (d*e) % phiN)
-                if((d*e) % phiN === 1 ){
-                    console.log("FOUND ONE D ",d)
+            while( ((dd*e) % phiN !== 1) && dd<10000 ){
+                console.log('d -> ', (dd*e) % phiN)
+                if((dd*e) % phiN === 1 ){
+                    console.log("FOUND ONE D ",dd)
                     break
                 }
-                d++
+                dd++
             }
-            if(d===10000){
-                d = 'computation is larger than 10000. Generate Primes Again.'
+            if(dd===10000){
+                dd = ('Computation is larger than 10000. Try Again.')
+                // setD('Computation is larger than 10000. Try Again.')
                 setGenEDisplay('none');
                 setGenDDisplay('none');
                 setDisplayOK('inline-block')
@@ -159,12 +172,12 @@ const PrimeGen = (...props) => {
             // take input and output the encrypted
             // open up decrypt box
             // take input and output the decrypted original (if success)
-            if(d<10000)setSuccessD('inline-block'); 
-            // setFinalCryptoPairs(N, e, d)
-            if(d<10000)setMainGenerator('none')
-            return d
+            if(dd<10000)setSuccessD('inline-block'); 
+            setFinalCryptoPairs({N, e, d:dd})
+            if(dd<10000)setMainGenerator('none')
+            return dd
         } else {
-            return null 
+            return 0 
         }
     }
     //-------------------------------------
