@@ -1,3 +1,9 @@
+:root {
+  --main-white: #f0f0f0;
+  --main-gold: #caac00;
+  --main-blue: #45567d;
+  --main-gray: #303841;
+}
 .App {
   text-align: center;
 }
@@ -10,6 +16,23 @@
 .get_d {
   color: white
 }
+.nav {
+  display: flex;
+  justify-content:space-around;
+  position:relative;
+  padding: 10px 0; 
+  font-weight: bolder; 
+  font-stretch: ultra-expanded;
+  top: 0;
+  left: 0;
+  bottom:auto;
+  width: 100%;
+  background: var(--main-gold);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+
 
 /* ----------------------------------------------------- */
 
@@ -17,7 +40,7 @@
 body { 
   /* margin: 0; 
   padding: 0;  */
-  background: rgb(0, 0, 0); 
+  background: rgb(40, 39, 77); 
   display: flex; 
   justify-content: center; 
   align-items: center; 
@@ -36,17 +59,17 @@ body {
               0 0 120px rgb(0, 27, 117), 
               0 0 220px rgb(0, 27, 117), 
               0 0 320px rgb(0, 27, 117); 
-  transition:5s; 
+  transition:4s; 
 } 
 
 .hover_buttons:hover { 
-  box-shadow: 0 0 0 30px rgb(20, 50, 114),  
-              0 0 0 60px rgb(20, 50, 114), 
-              0 0 0 100px rgb(20, 50, 114), 
-              0 0 0 120px rgb(20, 50, 114),  
-              0 0 0 200px rgb(20, 50, 114), 
-              0 0 0 400px rgb(20, 50, 114),  
-              0 0 0 450px rgb(20, 50, 114); 
+  box-shadow: 0 0 30px rgb(20, 50, 114),  
+              0 0 60px rgb(20, 50, 114), 
+              0 0 100px rgb(20, 50, 114), 
+              0 0 120px rgb(20, 50, 114),  
+              0 0 200px rgb(20, 50, 114), 
+              0 0 400px rgb(20, 50, 114),  
+              0 0 450px rgb(20, 50, 114); 
 } 
 
 /* ----------------------------------------------------- */

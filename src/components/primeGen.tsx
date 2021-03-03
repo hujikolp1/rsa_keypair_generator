@@ -161,13 +161,14 @@ const PrimeGen = (..._props: any[]) => {
                 dd++
             }
             if(dd===10000){
-                dd = ('Computation is larger than 10000. Try Again.')
+                dd = ('Computation > 10000. Try Again.')
                 // setD('Computation is larger than 10000. Try Again.')
                 setGenEDisplay('none');
                 setGenDDisplay('none');
                 setDisplayOK('inline-block')
             }
             // otherwise success
+
             // open up input box
             // take input and output the encrypted
             // open up decrypt box
