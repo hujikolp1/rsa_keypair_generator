@@ -1,4 +1,4 @@
-# RSA Public and private Encryption Pair Generator 
+# RSA Public and Private Encryption Pair Generator 
 ## Keep trying to generate until you succeed
 ## Very large calculations are halted so you may need to try several times
 ![Generator](public/crypto1.png)
