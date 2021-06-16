@@ -15,6 +15,9 @@ In the project directory, you can run:
 
 ### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Notes: 
+- remember in the tsconfig.json file to set "noImplicitAny" to false
+
+
 
 
