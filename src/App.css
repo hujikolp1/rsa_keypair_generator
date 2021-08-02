@@ -7,6 +7,7 @@
 .App {
   text-align: center;
 }
+
 .get_random_primes {
   color: white
 }
@@ -40,7 +41,7 @@
 body { 
   /* margin: 0; 
   padding: 0;  */
-  background: rgb(40, 39, 77); 
+  background: rgb(107, 106, 151); 
   display: flex; 
   justify-content: center; 
   align-items: center; 
@@ -50,26 +51,26 @@ body {
 .hover_buttons { 
   width: 80px; 
   height: 80px; 
-  background: rgb(0, 26, 255); 
-  border-radius: 30%; 
+  background: rgb(197, 211, 0); 
+  border-radius: 20%; 
   box-shadow: 0 0 20px rgb(97, 134, 255), 
               0 0 40px rgb(97, 134, 255),  
               0 0 60px rgb(0, 27, 117),  
               0 0 80px rgb(0, 27, 117),  
-              0 0 120px rgb(0, 27, 117), 
-              0 0 220px rgb(0, 27, 117), 
-              0 0 320px rgb(0, 27, 117); 
-  transition:4s; 
+              0 0 120px rgb(0, 40, 172), 
+              0 0 220px rgb(107, 106, 151), 
+              0px 0px 320px rgb(107, 106, 151); 
+  transition:3s; 
 } 
 
 .hover_buttons:hover { 
-  box-shadow: 0 0 30px rgb(20, 50, 114),  
-              0 0 60px rgb(20, 50, 114), 
-              0 0 100px rgb(20, 50, 114), 
-              0 0 120px rgb(20, 50, 114),  
-              0 0 200px rgb(20, 50, 114), 
-              0 0 400px rgb(20, 50, 114),  
-              0 0 450px rgb(20, 50, 114); 
+  box-shadow: 0px 0px 3000px rgb(114, 20, 20),  
+              0 0 600px rgb(20, 50, 114), 
+              0 0 1000px rgb(20, 50, 114), 
+              0 0 1200px rgb(20, 50, 114),  
+              0 0 2000px rgb(20, 50, 114), 
+              0 0 4000px rgb(20, 50, 114),  
+              0 0 4500px rgb(20, 50, 114); 
 } 
 
 /* ----------------------------------------------------- */
