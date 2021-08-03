@@ -1,22 +1,25 @@
 # RSA Public and Private Encryption Pair Generator 
-## Keep trying to generate until you succeed
+## Keep trying to manually generate until you succeed 
 ## Very large calculations are halted so you may need to try several times
+## Otherwise you can use the automatic generator
 ![Generator](public/crypto1.png)
 ## And your encryption pairs will be good to go
 ![Pairs](public/crypto2.png)
+## Now what do you do with these key pairs?
+## They can be used to encrypt and decrypt data as follows: 
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm i`
 
-### `yarn test`
+### `npm start`
 
-### `yarn build`
+### `npm build`
 
-### `yarn eject`
+### `npm eject`
 
 Notes: 
-- remember in the tsconfig.json file to set "noImplicitAny" to false
+- The tsconfig.json file property "noImplicitAny" is false
 
 
 
