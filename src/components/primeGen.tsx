@@ -58,12 +58,15 @@ const PrimeGen = (..._props: any[]) => {
         console.log('inputValue e -> ', e.target.parentNode[0].value)
     }
     const handleManually = () => {
+        setLoading(false); 
         setRandomPrimesDisplay('inline-block'); 
         setAutoGenDDisplay('none');
     }
     const handleAutomatically = () => {
         setAutoGenDDisplay('inline-block'); 
         setRandomPrimesDisplay('none'); 
+        setGenEDisplay('none');
+        setGenDDisplay('none'); 
     }
     const handleOK = () => {
         setDisplayOK('none')
@@ -257,10 +260,10 @@ const PrimeGen = (..._props: any[]) => {
     }
 
     return(
-        <div className='mainPrimeGen'>
+        <div>
             <h1 style={{color:'white'}}>RSA Keys Generator</h1><br></br> 
 
-            <div style={{display:`${mainGenerator}`}}>
+            <div className='mainPrimeGen' style={{display:`${mainGenerator}`}}>
                 <strong className='main_generator'>Do you want to generate manually or automatically?</strong><br></br>
                 <Button onClick={()=>handleManually()} color='default' variant='outlined'>Manually</Button>
                 <Button onClick={()=>handleAutomatically()} color='default' variant='outlined'>Automatically</Button>

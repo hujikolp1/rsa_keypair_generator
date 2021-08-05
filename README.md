@@ -16,6 +16,7 @@ M^E = C mod(N) and C^D = M mod(N) <br>
 Where M is the original message and C is the encrypted message, E is the public key and D is the private key. <br>
 Try this modulus calculator online to test your encryption pairs: <a> https://www.mtholyoke.edu/courses/quenell/s2003/ma139/js/powermod.html </a> 
 
+### Installation 
 This application uses Node Package Manager. In the project directory command line you can run: <br> 
 
 ### `npm i` <br>
