@@ -295,7 +295,7 @@ const PrimeGen = (..._props: any[]) => {
                     <div> d: {d} <br></br> </div>            
                 </div>
 
-                <Button onClick={()=>handleOK()} style={{display:`${displayOK}`}}>OK</Button>
+                <Button onClick={()=>handleOK()} variant='outlined' style={{display:`${displayOK}`}}>OK</Button>
                 <br></br>
 
             </div>
@@ -317,10 +317,10 @@ const PrimeGen = (..._props: any[]) => {
                         Keys
                     </th>
                     <tr>
-                        <td>{e}</td>
+                        <td>E: {e}</td>
                     </tr>
                     <tr>
-                        <td>{d}</td>
+                        <td>D: {d}</td>
                     </tr>
                 </table> <br></br>
 
