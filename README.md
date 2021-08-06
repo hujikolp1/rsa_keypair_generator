@@ -10,7 +10,7 @@
 Say you have an unencrypted message as an integer number, say 4. <br>
 Raise this number to the key E, say 5. So you get 1,024. This is your encrypted number. <br>
 This can be decrypted by raising the encryoted number to D, say 11, and taking its modulus N. <br>
-1,024 to the 11th power is 1.298074214634 e 33, and modulud 14 this is 4. <br>
+1,024 to the 11th power is 1.298074214634 e 33, and modulus 14 this is 4. <br>
 In short: <br>
 M^E = C mod(N) and C^D = M mod(N) <br>
 Where M is the original message and C is the encrypted message, E is the public key and D is the private key. <br>
