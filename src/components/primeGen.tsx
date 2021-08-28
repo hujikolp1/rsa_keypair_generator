@@ -45,6 +45,7 @@ const PrimeGen = (..._props: any[]) => {
 
 
     useEffect(() => {
+
         let primes = genPrimeArr()
         setPrimeArr(primes)
 
@@ -53,9 +54,9 @@ const PrimeGen = (..._props: any[]) => {
     }, [primeArr, randoPrime1, randoPrime2, displayOK])
 
     const handleSubmit = (e: { preventDefault: () => void; target: { parentNode: { value: any }[] } }) => {
-        e.preventDefault()
-        setInputValue(e.target.parentNode[0].value)
-        console.log('inputValue e -> ', e.target.parentNode[0].value)
+        e.preventDefault();
+        setInputValue(e.target.parentNode[0].value);
+        console.log('inputValue e -> ', e.target.parentNode[0].value);
     }
     const handleManually = () => {
         setLoading(false); 
