@@ -1,20 +1,12 @@
-export const genRandomPrimes = () => {
-    let random1 = Math.floor(Math.random()*(primeArr.length)) 
-    // setRandoPrime1(random1)
-    let random2 = Math.floor(Math.random()*(primeArr.length)) 
-    // setRandoPrime2(random2)
-
+export const genRandomPrimes = (primeArray:number[]):number[] => {
+    let random1:number = Math.floor(Math.random()*(primeArray.length)) 
+    let random2:number = Math.floor(Math.random()*(primeArray.length)) 
+    // make sure they are unique, since a square number would not be RSA secure 
     if(random2==random1){
         while(random2==random1){
-            random2 = Math.floor(Math.random()*(primeArr.length)) 
+            random2 = Math.floor(Math.random()*(primeArray.length)) 
         }
-        setRandoPrime2(random2)
     }
-    if(e!==undefined) setE(0)
-    if(d!==undefined) setD(0)
-    if(!d && e!==undefined) setGenDDisplay('none')
-    if(d!==undefined && e!==undefined) setGenDDisplay('none')
-    if(displayOK==='inline-block') setDisplayOK('none')
-    
-    setGenEDisplay('inline-block');
+
+    return [primeArray[random1], primeArray[random2]]; 
 }

@@ -1,5 +1,6 @@
 export const generateE = () => {
     // e is gt 1 and lt Phi(N)
+    // definition of Phi(N): phiN = (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1)
     // e is coprime with N and Phi(N)
     let findE; 
     if(randoPrime1 || randoPrime2){
