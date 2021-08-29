@@ -1,6 +1,6 @@
 import React from 'react';
-import PrimeGen from './components/primeGen'
-import DashBoard from './components/dashBoard'
+import AutoGenKeys from './components/autoGenKeys';
+import DashBoard from './components/dashBoard'; 
 import './App.css';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       
       <DashBoard></DashBoard>
 
-      <PrimeGen></PrimeGen>
+      <AutoGenKeys></AutoGenKeys>
       
     </div>
   );

@@ -13,7 +13,7 @@ This can be decrypted by raising the encryoted number to D, say 11, and taking i
 1,024 to the 11th power is 1.298074214634 e 33, and modulus 14 this is 4. <br>
 In short: <br>
 M^E = C mod(N) and C^D = M mod(N) <br>
-Where M is the original message and C is the encrypted message, E is the public key and D is the private key. <br>
+Where M is the original message and C is the encrypted message, E is the public key and D is the private key. Encrypted message must be at least 2 less than the modulo N or else it will break the algorithm. <br>
 Try this modulus calculator online to test your encryption pairs: <a> https://www.mtholyoke.edu/courses/quenell/s2003/ma139/js/powermod.html </a> 
 
 ### Installation 
@@ -27,7 +27,7 @@ And make a static build with <br>
 Or access all configuration files with <br>
 ### `npm eject` <br> 
 
-Notes: 
+```Notes: ```
 - The tsconfig.json file property "noImplicitAny" is false
 
 

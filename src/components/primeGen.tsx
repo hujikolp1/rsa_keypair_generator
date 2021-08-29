@@ -15,15 +15,15 @@ const PrimeGen = (..._props: any[]) => {
     const [N, setN] = useState<number>(primeArr[randoPrime1] * primeArr[randoPrime2]);
 
     const [genPrimesDisplay, setGenPrimesDisplay]=useState(true);
-    const [genEDisplay, setGenEDisplay]=useState('none');
-    const [genDDisplay, setGenDDisplay]=useState('none');
-    const [autoGenDDisplay, setAutoGenDDisplay]=useState('none');
-    const [randomPrimesDisplay, setRandomPrimesDisplay]=useState('none'); 
-    const [displayOK, setDisplayOK]=useState('none');
-    const [successD, setSuccessD]=useState('none');
-    const [mainGenerator, setMainGenerator]=useState('inline-block');
+    const [genEDisplay, setGenEDisplay]=useState<string>('none');
+    const [genDDisplay, setGenDDisplay]=useState<string>('none');
+    const [autoGenerateKeys, setAutoGenerateKeys]=useState<string>('none');
+    const [randomPrimesDisplay, setRandomPrimesDisplay]=useState<string>('none'); 
+    const [displayOK, setDisplayOK]=useState<string>('none');
+    const [successD, setSuccessD]=useState<string>('none');
+    const [mainGenerator, setMainGenerator]=useState<string>('inline-block');
     const [finalCryptoPairs,setFinalCryptoPairs]=useState<FinalCryptoPairs>({
-        N:0,e:0,d:0
+        N:0, e:0, d:0
     }); 
 
     const [test,setTest] = useState(null)
@@ -35,16 +35,6 @@ const PrimeGen = (..._props: any[]) => {
         d: Number|string; 
     }
 
-
-    // type StringRecord = {
-    //     [index: string]: number;
-    // };
-      
-    // interface IStringRecord {
-    //     [index: string]: number;
-    // }
-
-
     useEffect(() => {
 
         let primes = genPrimeArr()
@@ -52,7 +42,7 @@ const PrimeGen = (..._props: any[]) => {
 
         return () => {}
 
-    }, [primeArr, randoPrime1, randoPrime2, displayOK])
+    }, [primeArr, randoPrime1, randoPrime2, displayOK]); 
 
     const handleSubmit = (e: { preventDefault: () => void; target: { parentNode: { value: any }[] } }) => {
         e.preventDefault();
@@ -62,10 +52,10 @@ const PrimeGen = (..._props: any[]) => {
     const handleManually = () => {
         setLoading(false); 
         setRandomPrimesDisplay('inline-block'); 
-        setAutoGenDDisplay('none');
+        setAutoGenerateKeys('none');
     }
     const handleAutomatically = () => {
-        setAutoGenDDisplay('inline-block'); 
+        setAutoGenerateKeys('inline-block'); 
         setRandomPrimesDisplay('none'); 
         setGenEDisplay('none');
         setGenDDisplay('none'); 
@@ -75,11 +65,6 @@ const PrimeGen = (..._props: any[]) => {
         setPrimeArr([]);
         setE(0)
         setD(0)
-    }
-
-    const handleTest = () => {
-        // let a = math.evaluate('3+4')
-        // setTest(a)
     }
 
     //-------------------------------------
@@ -258,100 +243,85 @@ const PrimeGen = (..._props: any[]) => {
         }
     }
     //-------------------------------------
-    var styles = {
-        // ... 
-    }
 
     return(
+        
         <div>
-            <h1 style={{color:'white'}}>RSA Keys Generator</h1><br></br> 
+            <div>
+                
+                <h1 style={{color:'white'}}>RSA Keys Generator</h1><br></br> 
 
-            <div className='mainPrimeGen' style={{display:`${mainGenerator}`}}>
-                <strong className='main_generator'>Do you want to generate manually or automatically?</strong><br></br>
-                <Button onClick={()=>handleManually()} color='default' variant='outlined'>Manually</Button>
-                <Button onClick={()=>handleAutomatically()} color='default' variant='outlined'>Automatically</Button>
-                <div> 
-                    <button className="hover_buttons" onClick={()=>genRandomPrimes()} style={{display:`${randomPrimesDisplay}`}}>
-                        <strong>Get Random Primes</strong>
-                    </button> 
-                    {/* <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div> */}
-                    <button className="hover_buttons" onClick={()=>autoGenD()} style={{display:`${autoGenDDisplay}`}}>
-                        <strong>Auto Generate</strong>
-                    </button> 
-                    { loading && <LoadedRoute></LoadedRoute> }
+                <div className='mainPrimeGen' style={{display:`${mainGenerator}`}}>
+                    
+                    <strong className='main_generator'>Do you want to generate manually or automatically?</strong><br></br>
+                    <Button onClick={()=>handleManually()} color='default' variant='outlined'>Manually</Button>
+                    <Button onClick={()=>handleAutomatically()} color='default' variant='outlined'>Automatically</Button>
+                    <div> 
+                        <button className="hover_buttons" onClick={()=>genRandomPrimes()} style={{display:`${randomPrimesDisplay}`}}>
+                            <strong>Get Random Primes</strong>
+                        </button> 
+                        {/* <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div> */}
+                        <button className="hover_buttons" onClick={()=>autoGenD()} style={{display:`${autoGenerateKeys}`}}>
+                            <strong>Auto Generate</strong>
+                        </button> 
+                        { loading && <LoadedRoute></LoadedRoute> }
+                    </div>
+
+                    <div className='get_random_primes'>
+                        <div> Prime 1: {primeArr[randoPrime1]} <br></br> </div>
+                        <div> Prime 2: {primeArr[randoPrime2]} <br></br> </div>
+                        <div> N: { primeArr[randoPrime1] * primeArr[randoPrime2] } <br></br> </div>
+                        <div> &#x3D5;(N): { (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1) } <br></br><br></br> </div> 
+                    </div>
+                    <div className='get_e'>
+                        <button className="hover_buttons" onClick={()=>genE()} style={{display:`${genEDisplay}`}}>
+                            <strong>Get E</strong>
+                        </button> <br></br>
+                        <div> e: {e} <br></br><br></br> </div>            
+                    </div>
+
+                    <div className='get_d'>
+                        <button className="hover_buttons" onClick={()=>genD()} style={{display:`${genDDisplay}`}}>
+                            <strong>Manual Get D</strong> 
+                        </button> 
+                        <div> d: {d} <br></br> </div>            
+                    </div>
+
+                    <Button onClick={()=>handleOK()} variant='outlined' style={{display:`${displayOK}`}}>OK</Button>
+                    <br></br>
+
                 </div>
 
-                <div className='get_random_primes'>
-                    <div> Prime 1: {primeArr[randoPrime1]} <br></br> </div>
-                    <div> Prime 2: {primeArr[randoPrime2]} <br></br> </div>
-                    <div> N: { primeArr[randoPrime1] * primeArr[randoPrime2] } <br></br> </div>
-                    <div> &#x3D5;(N): { (primeArr[randoPrime1] - 1) * (primeArr[randoPrime2] - 1) } <br></br><br></br> </div> 
-                </div>
-                <div className='get_e'>
-                    <button className="hover_buttons" onClick={()=>genE()} style={{display:`${genEDisplay}`}}>
-                        <strong>Get E</strong>
-                    </button> <br></br>
-                    <div> e: {e} <br></br><br></br> </div>            
-                </div>
+                <div style={{display:`${successD}`}}>
+                    <table className='get_random_primes'>
+                        <th>
+                            N
+                        </th>
+                        <tr>
+                            <td>{primeArr[randoPrime1] * primeArr[randoPrime2]}</td>
+                        </tr>
 
-                <div className='get_d'>
-                    <button className="hover_buttons" onClick={()=>genD()} style={{display:`${genDDisplay}`}}>
-                        <strong>Manual Get D</strong> 
-                    </button> 
-                    <div> d: {d} <br></br> </div>            
-                </div>
+                    </table> <br></br>
+                        
+                    <table className='get_random_primes'>
+                        <th>
+                            Keys
+                        </th>
+                        <tr>
+                            <td>E: {e}</td>
+                        </tr>
+                        <tr>
+                            <td>D: {d}</td>
+                        </tr>
+                    </table> <br></br>
 
-                <Button onClick={()=>handleOK()} variant='outlined' style={{display:`${displayOK}`}}>OK</Button>
-                <br></br>
+
+                </div>
+            { autoGenerateKeys && <AutoGenKeys /> }
 
             </div>
-
-            <div style={{display:`${successD}`}}>
-                <table className='get_random_primes'>
-                    <th>
-                        N
-                    </th>
-                    <tr>
-                        <td>{primeArr[randoPrime1] * primeArr[randoPrime2]}</td>
-                    </tr>
-
-                </table> <br></br>
-                    
-                <table className='get_random_primes'>
-
-                    <th>
-                        Keys
-                    </th>
-                    <tr>
-                        <td>E: {e}</td>
-                    </tr>
-                    <tr>
-                        <td>D: {d}</td>
-                    </tr>
-                </table> <br></br>
-
-                    
-                    {/* <form>
-                        <input></input>
-                        <button type='submit' onClick={(e)=>handleSubmit(e)}>Message</button>
-                    </form> <br></br> */}
-
-
-
-            </div>
-           <AutoGenKeys/> 
-
-
-           {/* <button onClick={()=>handleTest()}>test</button> <br></br>
-           test: {test} */}
-
-           {/* Other Primes: {primeArr.map( (i)=>{
-               return <span>{i}</span>
-           })} <br></br> */}
-
-
-        </div>
+        </div> 
     )
 }
 
-export default PrimeGen
+export default PrimeGen; 

@@ -48,69 +48,28 @@ const AutoGenKeys:React.FC = ({...props})  => {
 
     }, []);
 
-    console.log('STATE primeArray ', primeArray); 
-    console.log('STATE randomPrimes ', randomPrimes);
-
-    console.log('p1 ', p1);
-    console.log('p2, ', p2); 
-
-    console.log('N ', N); 
-    console.log('phiN ', phiN); 
-
-
-
-    // const primeArray:number[] = genPrimeArr(); 
-    // console.log("primeArray ", primeArray);
-
-    // const randomPrimes:number[] = genRandomPrimes(primeArray); 
-    // console.log("randomPrimes ", randomPrimes); 
-
-    // const p1:number = randomPrimes[0];
-    // console.log("p1 ", p1);
-
-    // const p2:number = randomPrimes[1]; 
-    // console.log("p2 ", p2);
-
-    // const N:number = p1 * p2; 
-    // console.log("N ", N);
-
-    // const phiN:number = (p1 - 1) * (p2 - 1); 
-    // console.log("phiN ", phiN); 
-
-    // // get E
-    // const E:number = generateE(N, phiN); 
-    // console.log("EEEEEEEEEEEE ", E); 
-
-    // get D
-    // const D:number = generateD(N, E); 
-    // final pairs 
-
-
-
     return (
         <div>
-
-            {primeArray.map(i => {
-                return i+', '; 
-            })}
+            <br></br>
+            <span> Prime Array = [{primeArray.map(i => {return i+', ';})}] </span>
 
             <br></br>
-            P1 = {p1} 
+            <span> Prime1 = {p1} </span>
+             
+            <br></br>
+            <span> Prime2 = {p2} </span>
 
             <br></br>
-            P2 = {p2}
+            <span> N = {N} </span>
 
             <br></br>
-            N = {N}
+            <span> &#x3D5; = {phiN} </span>
 
             <br></br>
-            &#x3D5; = {phiN}
+            <span> E = {E} </span>
 
             <br></br>
-            E = {E}
-
-            <br></br>
-            D = {D}
+            <span> D = {D} </span>
 
         </div>
         
