@@ -90,9 +90,11 @@ const PrimeGen = (..._props: any[]) => {
         for (let n = firstN; n >= 2; n--) {
             let checker = true
             for(let i=2;i<firstN/2;i++){
-                if((n % i) == 0){
-                    checker = false
-                    break // not a prime num 
+                if(n!==i) {
+                    if((n % i) === 0){
+                        checker = false
+                        break // not a prime num 
+                    }                    
                 }
             }
             if(checker === true){
