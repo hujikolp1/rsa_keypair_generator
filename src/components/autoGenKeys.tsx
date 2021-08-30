@@ -54,7 +54,7 @@ const AutoGenKeys:React.FC = ({...props})  => {
             //         generatedE
             //     ); 
             // }
-            let errorGenerating:string = 'Computation > 10000. Try Again';
+            let errorGenerating:string = 'E and D are the same ... regenerating ... ';
             setD(errorGenerating); 
             window.location.reload(); 
         }

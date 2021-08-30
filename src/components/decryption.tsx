@@ -5,15 +5,15 @@ import Typography from '@material-ui/core/Typography';
 
 
 
-const Encryption = () => {
+const Decryption = () => {
 
     return(
         <div>
             <form>
-                <Typography variant='h5'> Encrypt Your Message </ Typography>
+                <Typography variant='h5'> Decrypt Your Message </ Typography>
 
-                <TextField label='Message' /> <br></br>
-                <TextField label='E' /> <br></br>
+                <TextField label='Encrypted Blob' /> <br></br>
+                <TextField label='D' /> <br></br>
                 <TextField label='N' /> <br></br>     
             </form>
             <Button />         
@@ -23,4 +23,4 @@ const Encryption = () => {
     )
 }
 
-export default Encryption; 
+export default Decryption; 
