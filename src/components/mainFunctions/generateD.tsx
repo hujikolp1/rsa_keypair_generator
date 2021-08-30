@@ -1,4 +1,4 @@
-export const generateD = (phiN:number, E:number):number => {
+export const generateD = (phiN:number, E:number):number|string => {
     // d*e = 1 mod N 
     let D:number=1; 
 
@@ -14,11 +14,12 @@ export const generateD = (phiN:number, E:number):number => {
             let errorD:string = ('Computation > 10000. Try Again.');
             console.error(errorD); 
             D=-1; 
+            window.location.reload(); 
+            break; 
             // failed to generate based on conditionals
             // must restart from top based on new inputs 
         }
     }
-
 
     return D; 
 }

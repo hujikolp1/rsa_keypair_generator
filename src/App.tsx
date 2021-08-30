@@ -1,7 +1,8 @@
 import React from 'react';
 import AutoGenKeys from './components/autoGenKeys';
 import DashBoard from './components/dashBoard'; 
-import './App.css';
+import Encryption from './components/encryption'; 
+import './App.css'; 
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
       <DashBoard></DashBoard>
 
       <AutoGenKeys></AutoGenKeys>
+
+      <Encryption></Encryption>
       
     </div>
   );
