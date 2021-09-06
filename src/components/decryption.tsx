@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 
 
-const Decryption = () => {
+const Decryption = (props) => {
 
     return(
         <div>
@@ -13,10 +13,10 @@ const Decryption = () => {
                 <Typography variant='h5'> Decrypt Your Message </ Typography>
 
                 <TextField label='Encrypted Blob' /> <br></br>
-                <TextField label='D' /> <br></br>
-                <TextField label='N' /> <br></br>     
+                <TextField label='D' value = {props.D}/> <br></br>
+                <TextField label='N' value={props.N}/> <br></br>     
             </form>
-            <Button />         
+            <Button>DECRYPT</Button>       
 
 
         </div>

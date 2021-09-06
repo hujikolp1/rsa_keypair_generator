@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useState, useEffect } from 'react';
+
 import { genPrimeArr } from './mainFunctions/genPrimeArr';
 import { genRandomPrimes } from './mainFunctions/genRandomPrimes'; 
 import { generateE } from './mainFunctions/generateE'; 
@@ -7,6 +8,9 @@ import { generateD } from './mainFunctions/generateD';
 import Table from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+
+import Encryption from './encryption'; 
+import Decryption from './decryption';
 
 
 const AutoGenKeys:React.FC = ({...props})  => {
@@ -120,11 +124,16 @@ const AutoGenKeys:React.FC = ({...props})  => {
 
             </Table>
 
+            <Encryption E={E} N={N} />
+
+            <Decryption D={D} N={N}/> 
+
         </div>
         
     )
         
 }
+
 
 export default AutoGenKeys; 
 

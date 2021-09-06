@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'; 
 import { Redirect, Route } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import AutoGenKeys from './autoGenKeys'; 
+import AutoGenKeys from '../components/autoGenKeys'; 
 
 
 const PrimeGen = (..._props: any[]) => {
