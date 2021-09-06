@@ -14,7 +14,7 @@ This can be decrypted by raising the encryoted number to D, say 11, and taking i
 In short: <br>
 M^E = C mod(N) and C^D = M mod(N) <br>
 Where M is the original message and C is the encrypted message, E is the public key and D is the private key. Encrypted message must be at least 2 less than the modulo N or else it will break the algorithm. Likewise your encrypted message or integer cannot be equal to the larger prime or the larger prime + 1; otherwise your encrypted message will be your original message. <br>
-Try this modulus calculator online to test your encryption pairs: <a> https://www.mtholyoke.edu/courses/quenell/s2003/ma139/js/powermod.html </a> 
+Try this modulus calculator online to test your encryption pairs: <a> https://www.mtholyoke.edu/courses/quenell/s2003/ma139/js/powermod.html </a> or the nifty <a>https://www.emathcalculator.com/en/calculators/algebra/powerMod.php</a> 
 
 ### Installation 
 This application uses Node Package Manager. In the project directory command line you can run: <br> 
