@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { genPrimeArr } from './mainFunctions/genPrimeArr';
 import { genRandomPrimes } from './mainFunctions/genRandomPrimes'; 

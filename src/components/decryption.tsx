@@ -10,13 +10,19 @@ const Decryption = (props) => {
     return(
         <div>
             <form>
-                <Typography variant='h5'> Decrypt Your Message </ Typography>
+                <Typography variant='h1'> Decrypt Your Number </ Typography>
 
-                <TextField label='Encrypted Blob' /> <br></br>
+                <TextField label='Num' /> <br></br>
                 <TextField label='D' value = {props.D}/> <br></br>
                 <TextField label='N' value={props.N}/> <br></br>     
             </form>
-            <Button>DECRYPT</Button>       
+            <Button
+                variant='outlined'
+                size='large'
+                color='secondary'
+            >
+                DECRYPT
+            </Button>       
 
 
         </div>
