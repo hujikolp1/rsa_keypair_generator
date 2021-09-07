@@ -12,6 +12,7 @@ const Encryption = (props: { N: number; E: number; }) => {
     
     const [bigNumInput, setBigNumInput] = useState<any>(); 
     const [encryptedNum, setEncryptedNum] = useState<bigint>(); 
+    const [encryptedNumDisplay, setEncryptedNumDisplay]=useState<string>('none');
 
     const [message, setMessage] = useState<string>(''); 
     const [charCodeArray, setCharCodeArray] = useState<number[]>([]); 
@@ -21,6 +22,8 @@ const Encryption = (props: { N: number; E: number; }) => {
         console.log('placeholder ', placeholder); 
         placeholder = BigInt(placeholder);
         console.log('bigint ', placeholder); 
+        setBigNumInput(placeholder); 
+        console.log('inside handleNumInput ', bigNumInput); 
 
         // if( typeof placeholder === 'bigint' && placeholder < props.N - 2) { 
         //     setNumInput(placeholder);
@@ -35,8 +38,21 @@ const Encryption = (props: { N: number; E: number; }) => {
         //         alert('Please input a number smaller than N - 2'); 
         //     }
         // }
-        setBigNumInput(placeholder); 
-        console.log('num input: ', bigNumInput); 
+
+        // setBigNumInput(placeholder); 
+        // console.log('num input: ', bigNumInput); 
+        // let bigE = BigInt(props.E); 
+        // let bigN = BigInt(props.N); 
+        // let encrypt:any = BigInt(bigNumInput); 
+        // encrypt = (encrypt**bigE)%bigN;
+        // console.log('encrypt ', encrypt, ' typeof ', typeof encrypt); 
+
+        // setEncryptedNum(encrypt);
+        // console.log('encrypted num ', encryptedNum); 
+        // if(!!encryptedNum){
+        //     setEncryptedNum(encrypt); 
+        // }
+
     }
 
     //--------------------------------------------------------------------------------
@@ -71,42 +87,51 @@ const Encryption = (props: { N: number; E: number; }) => {
     // }
     //--------------------------------------------------------------------------------
 
-    const handleEncryption = (e: { preventDefault: () => void; }) => {
-        e.preventDefault(); 
-        let bigE = BigInt(props.E); 
-        let bigN = BigInt(props.N); 
-        let encrypt:any = BigInt(bigNumInput); 
-        encrypt = (encrypt**bigE)%bigN;
-        console.log('encrypt ', encrypt, ' typeof ', typeof encrypt); 
+    const handleSetEncryption = ():Promise<bigint> => {
+        return new Promise( (res, rej) => {
+            try {
+                let bigE = BigInt(props.E); 
+                let bigN = BigInt(props.N); 
+                console.log('Promise big int num => ', bigNumInput); 
+                let encrypt:bigint = BigInt(bigNumInput); 
+                encrypt = (encrypt**bigE)%bigN;
+                console.log('NOT STATEFUL encrypt ', encrypt, ' typeof ', typeof encrypt); 
+                res(encrypt);
+            }
+            catch (error) {
+                console.log('promise error ... ')
+                rej(error); 
+            }
+        })
+    }
 
-        setEncryptedNum(encrypt);
+    const handleEncryption = async (e: { preventDefault: () => void; }) => {
+        e.preventDefault(); 
+        // let bigE = BigInt(props.E); 
+        // let bigN = BigInt(props.N); 
+        // console.log('BIG NUM INPUT ', bigNumInput); 
+        // let encrypt = BigInt(bigNumInput); 
+        // encrypt = (encrypt**bigE)%bigN;
+        // console.log('encrypt ', encrypt, ' typeof ', typeof encrypt); 
+
+        const encrypt = await handleSetEncryption(); 
+        setEncryptedNum(encrypt); 
         console.log('encrypted num ', encryptedNum); 
-        if(!encryptedNum){
-            setEncryptedNum(encrypt); 
-        }
-        console.log('AGAIN encrypted num ', encryptedNum); 
+
 
     }
 
     return(
         <div>
             <form>
-                <Typography variant='h1'> Encrypt Your Number </ Typography>
+                <Typography variant='h3'> Encrypt Your Number </ Typography>
 
                 <TextField onChange={handleNumInput} label='Num' /> <br></br>
                 <TextField label='E' value={props.E}/> <br></br>
                 <TextField label='N' value={props.N}/> <br></br>     
 
                 <Button 
-                    variant='outlined'
-                    size='large'
-                    color='primary'
-                    onClick={handleEncryption}
-                >
-                    Calculate
-                </Button>
-
-                <Button 
+                    // style={{display: `${encryptedNumDisplay}`}}
                     variant='outlined'
                     size='large'
                     color='secondary'

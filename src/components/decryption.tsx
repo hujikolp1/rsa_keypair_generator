@@ -10,7 +10,7 @@ const Decryption = (props) => {
     return(
         <div>
             <form>
-                <Typography variant='h1'> Decrypt Your Number </ Typography>
+                <Typography variant='h3'> Decrypt Your Number </ Typography>
 
                 <TextField label='Num' /> <br></br>
                 <TextField label='D' value = {props.D}/> <br></br>
