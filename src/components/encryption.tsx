@@ -1,5 +1,7 @@
 import React from 'react'; 
 import { useState } from 'react';
+import CalcEncrypt from './calcEncrypt'; 
+
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -11,13 +13,14 @@ import { placeholder } from '@babel/types';
 const Encryption = (props: { N: number; E: number; }) => {
     
     const [bigNumInput, setBigNumInput] = useState<any>(); 
+
     const [encryptedNum, setEncryptedNum] = useState<bigint>(); 
     const [encryptedNumDisplay, setEncryptedNumDisplay]=useState<string>('none');
 
     const [message, setMessage] = useState<string>(''); 
     const [charCodeArray, setCharCodeArray] = useState<number[]>([]); 
 
-    const handleNumInput = (e: { target: { value: any; }; }) => {
+    const handleNumChange = (e: { target: { value: any; }; }) => {
         let placeholder = (e.target.value);
         console.log('placeholder ', placeholder); 
         placeholder = BigInt(placeholder);
@@ -53,6 +56,11 @@ const Encryption = (props: { N: number; E: number; }) => {
         //     setEncryptedNum(encrypt); 
         // }
 
+    }
+    const handleNumSubmit = (e: { preventDefault: () => void; }) => {
+        e.preventDefault(); 
+        setEncryptedNum(bigNumInput);
+        console.log('STATEFUL BIG NUM INPUT ', bigNumInput); 
     }
 
     //--------------------------------------------------------------------------------
@@ -116,7 +124,7 @@ const Encryption = (props: { N: number; E: number; }) => {
 
         const encrypt = await handleSetEncryption(); 
         setEncryptedNum(encrypt); 
-        console.log('encrypted num ', encryptedNum); 
+        console.log('STATEFUL encrypted num ', encryptedNum); 
 
 
     }
@@ -126,9 +134,18 @@ const Encryption = (props: { N: number; E: number; }) => {
             <form>
                 <Typography variant='h3'> Encrypt Your Number </ Typography>
 
-                <TextField onChange={handleNumInput} label='Num' /> <br></br>
+                <TextField onChange={handleNumChange} label='Num' /> 
+                <Button
+                    variant='outlined'
+                    size='large'
+                    color='secondary'
+                    type='submit' 
+                    onClick={handleNumSubmit}
+                >
+                    Input Number
+                </Button> <br></br>
                 <TextField label='E' value={props.E}/> <br></br>
-                <TextField label='N' value={props.N}/> <br></br>     
+                <TextField label='N' value={props.N}/> <br></br>    
 
                 <Button 
                     // style={{display: `${encryptedNumDisplay}`}}
@@ -138,10 +155,10 @@ const Encryption = (props: { N: number; E: number; }) => {
                     type='submit' 
                     onClick={handleEncryption}
                 >
-                    ENCRYPT
-                </Button>        
+                    ENCRYPT NUMBER
+                </Button>  
             </form>
-            <Typography variant='h6'>Encrypted: {encryptedNum}</Typography> 
+            <Typography variant='h6'>Encrypted: {encryptedNum} </Typography> 
 
 
         </div>
