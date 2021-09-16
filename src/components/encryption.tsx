@@ -97,7 +97,7 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: bigi
             <form>
                 <Typography variant='h3'> Encrypt Your Number </ Typography>
 
-                <TextField onChange={handleNumChange} label='Num' /> <br></br>
+                <TextField onChange={handleNumChange} label='Num to Encrypt' /> <br></br>
                 <Typography>E = {props.E}</Typography> <br></br>
                 <Typography>N = {props.N}</Typography> <br></br>    
 
