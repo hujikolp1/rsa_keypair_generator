@@ -1,7 +1,6 @@
 # RSA Public and Private Encryption Pair Generator 
-## Keep trying to manually generate until you succeed 
-## Very large calculations are halted so you may need to try several times
-## Otherwise you can use the automatic generator
+## This TypsScript program will automatically generate pairs for you based on primes less than 149
+## Of course, you can increase the range of primes used but it will take up more computation time and energy.
 ![Generator](public/crypto1.png)
 ## And your encryption pairs will be good to go
 ![Pairs](public/crypto2.png)
@@ -14,7 +13,12 @@ This can be decrypted by raising the encryoted number to D, say 11, and taking i
 In short: <br>
 M^E = C mod(N) and C^D = M mod(N) <br>
 Where M is the original message and C is the encrypted message, E is the public key and D is the private key. Encrypted message must be at least 2 less than the modulo N or else it will break the algorithm. Likewise your encrypted message or integer cannot be equal to the larger prime or the larger prime + 1; otherwise your encrypted message will be your original message. <br>
-Try this modulus calculator online to test your encryption pairs: <a> https://www.mtholyoke.edu/courses/quenell/s2003/ma139/js/powermod.html </a> or the nifty <a>https://www.emathcalculator.com/en/calculators/algebra/powerMod.php</a> 
+Try this modulus calculator online to test your encryption pairs: <a> https://www.mtholyoke.edu/courses/quenell/s2003/ma139/js/powermod.html </a> or the nifty <a>https://www.emathcalculator.com/en/calculators/algebra/powerMod.php</a> <br>
+
+TypeScript was used in this application, as well as a compiler target for ES2020. This was needed to use the BigInt data type to perform these large computations. Regular integers were just not enough. <br> 
+
+### Requirements 
+* Node.js, NPM 
 
 ### Installation 
 This application uses Node Package Manager. In the project directory command line you can run: <br> 
@@ -29,6 +33,7 @@ Or access all configuration files with <br>
 
 ```Notes: ```
 - The tsconfig.json file property "noImplicitAny" is false
+- The tsconfig.json compilerOptions "target" is ES2020
 
 
 

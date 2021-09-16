@@ -1,4 +1,4 @@
-export const generateD = (phiN:number, E:number):number|string => {
+export const generateD = (phiN:number, E:number):number => {
     // d*e = 1 mod N 
     let D:number=1; 
 

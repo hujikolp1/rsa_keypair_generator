@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 
 
-const Decryption = (props) => {
+const Decryption = (props: { N: number; E: number; D: number; encryptedNum: bigint }) => {
 
     return(
         <div>
@@ -13,18 +13,19 @@ const Decryption = (props) => {
                 <Typography variant='h3'> Decrypt Your Number </ Typography>
 
                 <TextField label='Num' /> <br></br>
-                <TextField label='D' value = {props.D}/> <br></br>
-                <TextField label='N' value={props.N}/> <br></br>     
+                <Typography>D = {props.D}</Typography> <br></br>
+                <Typography>N = {props.N}</Typography> <br></br>     
             </form>
             <Button
                 variant='outlined'
                 size='large'
                 color='secondary'
             >
-                DECRYPT
-            </Button>       
+                <text>DECRYPT NUMBER</text>
+            </Button>  
 
-
+            {/* <Typography variant='h6'>Decrypted: {encryptedNum ? String(encryptedNum).concat('n') : 'N/A'} </Typography>  */}
+     
         </div>
     )
 }

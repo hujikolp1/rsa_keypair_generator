@@ -11,7 +11,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
 import Encryption from './encryption'; 
-import Decryption from './decryption';
 
 
 const AutoGenKeys:React.FC = ({...props})  => {
@@ -23,7 +22,7 @@ const AutoGenKeys:React.FC = ({...props})  => {
     const [N, setN] = useState<number>(-1); 
     const [phiN, setPhiN] = useState<number>(-1); 
     const [E, setE] = useState<number>(-1); 
-    const [D, setD] = useState<number|string>(-1); 
+    const [D, setD] = useState<number>(-1); 
  
     useEffect( () => {
 
@@ -43,7 +42,7 @@ const AutoGenKeys:React.FC = ({...props})  => {
         ); 
         setE(generatedE); 
 
-        let generatedD:number|string = generateD(
+        let generatedD:number = generateD(
             ( (generatedRandomPrimes[0] - 1) * (generatedRandomPrimes[1] - 1) ),
             generatedE
         ); 
@@ -59,7 +58,7 @@ const AutoGenKeys:React.FC = ({...props})  => {
             //         generatedE
             //     ); 
             // }
-            let errorGenerating:string = 'E and D are the same ... regenerating ... ';
+            let errorGenerating:number = -1;
             setD(errorGenerating); 
             window.location.reload(); 
         }
@@ -125,9 +124,7 @@ const AutoGenKeys:React.FC = ({...props})  => {
 
             </Table>
 
-            <Encryption E={E} N={N} />
-
-            <Decryption D={D} N={N}/> 
+            <Encryption E={E} N={N} D={D} encryptedNum={undefined}/>
 
         </div>
         

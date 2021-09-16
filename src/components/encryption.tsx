@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { useState } from 'react';
-import CalcEncrypt from './calcEncrypt'; 
+import Decryption from './decryption'; 
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -10,7 +10,7 @@ import { placeholder } from '@babel/types';
 
 
 
-const Encryption = (props: { N: number; E: number; }) => {
+const Encryption = (props: { N: number; E: number; D: number; encryptedNum: bigint|undefined }) => {
     
     const [bigNumInput, setBigNumInput] = useState<any>(); 
 
@@ -28,44 +28,15 @@ const Encryption = (props: { N: number; E: number; }) => {
         setBigNumInput(placeholder); 
         console.log('inside handleNumInput ', bigNumInput); 
 
-        // if( typeof placeholder === 'bigint' && placeholder < props.N - 2) { 
-        //     setNumInput(placeholder);
-        // }
-        // else {
-        //     if(typeof placeholder !== 'bigint'){
-        //         setNumInput(BigInt(0)); 
-        //         alert('Please only input numbers');
-        //     }
-        //     else if (placeholder >= props.N - 2){
-        //         setNumInput(BigInt(0));
-        //         alert('Please input a number smaller than N - 2'); 
-        //     }
-        // }
-
-        // setBigNumInput(placeholder); 
-        // console.log('num input: ', bigNumInput); 
-        // let bigE = BigInt(props.E); 
-        // let bigN = BigInt(props.N); 
-        // let encrypt:any = BigInt(bigNumInput); 
-        // encrypt = (encrypt**bigE)%bigN;
-        // console.log('encrypt ', encrypt, ' typeof ', typeof encrypt); 
-
-        // setEncryptedNum(encrypt);
-        // console.log('encrypted num ', encryptedNum); 
-        // if(!!encryptedNum){
-        //     setEncryptedNum(encrypt); 
-        // }
-
     }
-    const handleNumSubmit = (e: { preventDefault: () => void; }) => {
-        e.preventDefault(); 
-        setEncryptedNum(bigNumInput);
-        console.log('STATEFUL BIG NUM INPUT ', bigNumInput); 
-    }
+
 
     //--------------------------------------------------------------------------------
     // ------------------  handleStringEncryption 
     //--------------------------------------------------------------------------------
+
+    // string => binary or hex representation
+    // binary => original string 
 
     // const handleStringEncryption = (e: { preventDefault: () => void; }) => {
     //     e.preventDefault(); 
@@ -115,37 +86,20 @@ const Encryption = (props: { N: number; E: number; }) => {
 
     const handleEncryption = async (e: { preventDefault: () => void; }) => {
         e.preventDefault(); 
-        // let bigE = BigInt(props.E); 
-        // let bigN = BigInt(props.N); 
-        // console.log('BIG NUM INPUT ', bigNumInput); 
-        // let encrypt = BigInt(bigNumInput); 
-        // encrypt = (encrypt**bigE)%bigN;
-        // console.log('encrypt ', encrypt, ' typeof ', typeof encrypt); 
-
         const encrypt = await handleSetEncryption(); 
         setEncryptedNum(encrypt); 
-        console.log('STATEFUL encrypted num ', encryptedNum); 
-
-
+        // console.log('STATEFUL encrypted num ', encryptedNum); 
     }
+
 
     return(
         <div>
             <form>
                 <Typography variant='h3'> Encrypt Your Number </ Typography>
 
-                <TextField onChange={handleNumChange} label='Num' /> 
-                <Button
-                    variant='outlined'
-                    size='large'
-                    color='secondary'
-                    type='submit' 
-                    onClick={handleNumSubmit}
-                >
-                    Input Number
-                </Button> <br></br>
-                <TextField label='E' value={props.E}/> <br></br>
-                <TextField label='N' value={props.N}/> <br></br>    
+                <TextField onChange={handleNumChange} label='Num' /> <br></br>
+                <Typography>E = {props.E}</Typography> <br></br>
+                <Typography>N = {props.N}</Typography> <br></br>    
 
                 <Button 
                     // style={{display: `${encryptedNumDisplay}`}}
@@ -155,12 +109,12 @@ const Encryption = (props: { N: number; E: number; }) => {
                     type='submit' 
                     onClick={handleEncryption}
                 >
-                    ENCRYPT NUMBER
+                    <text>ENCRYPT NUMBER</text>
                 </Button>  
             </form>
-            <Typography variant='h6'>Encrypted: {encryptedNum} </Typography> 
+            <Typography variant='h6'>Encrypted: {encryptedNum ? String(encryptedNum).concat('n') : 'N/A'} </Typography> 
 
-
+            <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum}/>
         </div>
     )
 }
