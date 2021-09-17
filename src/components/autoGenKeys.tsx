@@ -11,10 +11,13 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
 import Encryption from './encryption'; 
+import { Button } from '@material-ui/core';
 
 
 const AutoGenKeys:React.FC = ({...props})  => {
 
+    // ------------------------------------------------------------
+    // FORMULA state variables
     const [primeArray, setPrimeArray] = useState<number[]>([]); 
     const [randomPrimes, setRandomPrimes] = useState<number[]>([]);
     const [p1, setP1] = useState<number>(-1);
@@ -23,6 +26,12 @@ const AutoGenKeys:React.FC = ({...props})  => {
     const [phiN, setPhiN] = useState<number>(-1); 
     const [E, setE] = useState<number>(-1); 
     const [D, setD] = useState<number>(-1); 
+    // ------------------------------------------------------------
+
+    const [showFormulas, setShowFormulas] = useState<string>('none');
+
+    // ------------------------------------------------------------
+
  
     useEffect( () => {
 
@@ -52,77 +61,93 @@ const AutoGenKeys:React.FC = ({...props})  => {
         }
         else {
             console.error('E and D are the same ... regenerating ... ');
-            // while(D == E) {
-            //     generatedD = generateD(
-            //         ( (generatedRandomPrimes[0] - 1) * (generatedRandomPrimes[1] - 1) ),
-            //         generatedE
-            //     ); 
-            // }
             let errorGenerating:number = -1;
             setD(errorGenerating); 
             window.location.reload(); 
         }
         
-        return () => {console.log('useEffect done')}
+        return () => {console.log('end useEffect()')}
 
-    }, []);
+    }, []); /* --- end useEffect() --- */ 
+
+    const clickShowFormulas = () => {
+        if(showFormulas === 'none') {
+            setShowFormulas('inline-block');
+        }
+        else {
+            setShowFormulas('none');
+        }
+    };
 
     return (
         <div>
-            <Table>
+            <Button
+                variant='outlined'
+                size='large'
+                color='primary'
+                type='button' 
+                onClick={ clickShowFormulas }
+            >
+                Show/Hide Formulas 
+            </Button>
 
-                <br></br>
-                <TableRow>
-                    <TableCell align='center'> 
-                        Prime Array = [{primeArray.map(i => {
-                            return i+', ';
-                        })}]
-                    </TableCell>                    
-                </TableRow>
+            <div className='formulasTable' style={ {display: `${showFormulas}`} }>
+                <Table>
 
-                <br></br>
-                <TableRow>
-                    <TableCell align='center'> 
-                        Prime1 = {p1} 
-                    </TableCell>                    
-                </TableRow>
+                    <br></br>
+                    <TableRow>
+                        <TableCell align='center'> 
+                            Prime Array = [{primeArray.map(i => {
+                                return i+', ';
+                            })}]
+                        </TableCell>                    
+                    </TableRow>
 
-                <br></br>
-                <TableRow>
-                    <TableCell align='center'> 
-                        Prime2 = {p2}
-                    </TableCell>                    
-                </TableRow>
+                    <br></br>
+                    <TableRow>
+                        <TableCell align='center'> 
+                            Prime1 = {p1} 
+                        </TableCell>                    
+                    </TableRow>
 
-                <br></br>
-                <TableRow>
-                    <TableCell align='center'> 
-                        N = {N}
-                    </TableCell>                    
-                </TableRow>
+                    <br></br>
+                    <TableRow>
+                        <TableCell align='center'> 
+                            Prime2 = {p2}
+                        </TableCell>                    
+                    </TableRow>
 
-                <br></br>
-                <TableRow>
-                    <TableCell align='center'> 
-                        &#x3D5; = {phiN}
-                    </TableCell>                    
-                </TableRow>
+                    <br></br>
+                    <TableRow>
+                        <TableCell align='center'> 
+                            N = {N}
+                        </TableCell>                    
+                    </TableRow>
 
-                <br></br>
-                <TableRow>
-                    <TableCell align='center'> 
-                        E = {E}
-                    </TableCell>                    
-                </TableRow>
+                    <br></br>
+                    <TableRow>
+                        <TableCell align='center'> 
+                            &#x3D5; = {phiN}
+                        </TableCell>                    
+                    </TableRow>
 
-                <br></br>
-                <TableRow>
-                    <TableCell align='center'> 
-                        D = {D}
-                    </TableCell>                    
-                </TableRow>
+                    <br></br>
+                    <TableRow>
+                        <TableCell align='center'> 
+                            E = {E}
+                        </TableCell>                    
+                    </TableRow>
 
-            </Table>
+                    <br></br>
+                    <TableRow>
+                        <TableCell align='center'> 
+                            D = {D}
+                        </TableCell>                    
+                    </TableRow>
+
+                </Table>
+
+            </div>
 
             <Encryption E={E} N={N} D={D} encryptedNum={undefined}/>
 
