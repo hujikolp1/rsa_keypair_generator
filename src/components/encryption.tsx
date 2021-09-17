@@ -78,7 +78,7 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: bigi
                 res(encrypt);
             }
             catch (error) {
-                console.log('promise error ... ')
+                console.log('encrypt promise error ... ')
                 rej(error); 
             }
         })
