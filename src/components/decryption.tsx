@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState , useEffect} from 'react'; 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -6,37 +6,37 @@ import Typography from '@material-ui/core/Typography';
 
 
 const Decryption = (props: { N: number; E: number; D: number; encryptedNum: bigint|undefined }) => {
-    const [encryptedNum, setEncryptedNum] = useState<bigint|undefined>(); 
-    const [decryptedNum, setDecryptedNum] = useState<number>(-1); 
 
-    // useState( ()=>{
-    //     console.log('pulled in encrypted Num => ', props.encryptedNum)
-    //     setEncryptedNum(props.encryptedNum); 
-    //     return () => {}
-    // });
+    const [encryptedNumProps, setEncryptedNumProps] = useState<bigint>(); 
+    const [encryptedNum, setEncryptedNum] = useState<bigint>(); 
+    const [decryptedNum, setDecryptedNum] = useState<number>(); 
+
+    useEffect( ()=>{
+        console.log('pulled in encrypted Num => ', props.encryptedNum);
+        setEncryptedNumProps(props.encryptedNum); 
+        return () => {}
+    }, [encryptedNum]);
 
     const handleNumChange = (e: { target: { value: any; }; }) => {
         let placeholder = (e.target.value);
-        console.log('placeholder ', placeholder); 
-        placeholder = BigInt(placeholder);
-        console.log('bigint ', placeholder); 
-        console.log('inside handleNumInput ', ); 
+        placeholder = setEncryptedNum(placeholder);
+        console.log('setEncryptedNum: ', encryptedNum);
 
     }
-    const handleSetDecryption = ():Promise<bigint> => {
+    const handleSetDecryption = ():Promise<number> => {
         return new Promise( (res, rej) => {
             try {
-                let bigD = BigInt(props.D); 
-                let bigN = BigInt(props.N); 
-                console.log('Promise big int num => ', ); 
-                let encrypt = props.encryptedNum; 
+                let bigD = props.D; 
+                let bigN = props.N; 
+                // cast from bigint back into number type 
+                let numCrypt = Number(encryptedNum)
 
                 // decrypt
-                let decrypt = (encryptedNum**bigD)%bigN; 
+                let decrypt = Number( (numCrypt**bigD)%bigN ); 
                 // E^D mod N 
 
                 // encrypt = (encrypt**bigE)%bigN;
-                console.log('NOT STATEFUL encrypt ', ' typeof ', typeof encrypt); 
+                console.log('NOT STATEFUL decrypt ', decrypt, ' typeof ', typeof decrypt); 
                 res(decrypt);
             }
             catch (error) {
@@ -50,7 +50,7 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: bigi
         e.preventDefault(); 
         const decrypt = await handleSetDecryption(); 
         setDecryptedNum(decrypt); 
-        console.log('STATEFUL DEcrypted num ', encryptedNum); 
+        console.log('STATEFUL DEcrypted num ', decryptedNum); 
     }
 
 
@@ -60,7 +60,7 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: bigi
             <form>
                 <Typography variant='h3'> Decrypt Your Number </ Typography>
 
-                <TextField onChange={handleNumChange} label='Num to Decrypt' value={encryptedNum}/> <br></br>
+                <TextField onChange={handleNumChange} label='Num to Decrypt' /> <br></br>
                 <Typography>D = {props.D}</Typography> <br></br>
                 <Typography>N = {props.N}</Typography> <br></br>     
             </form>

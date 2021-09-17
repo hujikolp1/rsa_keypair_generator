@@ -114,7 +114,7 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: bigi
             </form>
             <Typography variant='h6'>Encrypted: {encryptedNum ? String(encryptedNum).concat('n') : 'N/A'} </Typography> 
 
-            <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum}/>
+            {encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum}/>}
         </div>
     )
 }
