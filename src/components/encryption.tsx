@@ -10,7 +10,7 @@ import { placeholder } from '@babel/types';
 
 
 
-const Encryption = (props: { N: number; E: number; D: number; encryptedNum: bigint|undefined }) => {
+const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any }) => {
     
     const [bigNumInput, setBigNumInput] = useState<any>(); 
 
@@ -99,7 +99,8 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: bigi
 
                 <TextField onChange={handleNumChange} label='Num to Encrypt' /> <br></br>
                 <Typography>E = {props.E}</Typography> <br></br>
-                <Typography>N = {props.N}</Typography> <br></br>    
+                <Typography>N = {props.N}</Typography> <br></br>   
+                <Typography>D = {props.D}</Typography> <br></br>     
 
                 <Button 
                     // style={{display: `${encryptedNumDisplay}`}}
@@ -112,7 +113,7 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: bigi
                     <text>ENCRYPT NUMBER</text>
                 </Button>  
             </form>
-            <Typography variant='h6'>Encrypted: {encryptedNum ? String(encryptedNum).concat('n') : 'N/A'} </Typography> 
+            <Typography variant='h6'>Num to Decrypt: {encryptedNum ? String(encryptedNum).concat('n') : 'N/A'} </Typography> 
 
             {encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum}/>}
         </div>
