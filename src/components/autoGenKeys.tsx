@@ -89,7 +89,7 @@ const AutoGenKeys:React.FC = ({...props})  => {
                 onClick={ clickShowFormulas }
             >
                 Show/Hide Formulas 
-            </Button>
+            </Button> <br></br>
 
             <div className='formulasTable' style={ {display: `${showFormulas}`} }>
                 <Table>
