@@ -1,6 +1,6 @@
 # RSA Public and Private Encryption Key Pair Generator
 This TypsScript program will automatically generate pairs for you based on primes less than 149.
-Of course, you can increase the range of primes used but it will take up more computation time and energy. To change this range of numbers go to ```/src/components/mainFunctions``` and increase or decrease the prime numbers in the file ```genPrimeArr.tsx```. Once your encryption pairs are good to go you can use then for encryption and decryption. <br> 
+Of course, you can increase this range of primes used but it will take up more computation time and energy. To change this range go to ```/src/components/mainFunctions``` and increase or decrease the prime numbers in the file ```genPrimeArr.tsx```. Once your encryption pairs are good to go you can use them for encryption and decryption. <br> 
 
 ![Generator](public/crypto1.png)
 
