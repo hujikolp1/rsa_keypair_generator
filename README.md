@@ -1,11 +1,10 @@
-# RSA Public and Private Encryption Pair Generator 
-## This TypsScript program will automatically generate pairs for you based on primes less than 149
-## Of course, you can increase the range of primes used but it will take up more computation time and energy.
+# RSA Public and Private Encryption Key Pair Generator
+This TypsScript program will automatically generate pairs for you based on primes less than 149
+Of course, you can increase the range of primes used but it will take up more computation time and energy. And your encryption pairs will be good to go
+
 ![Generator](public/crypto1.png)
-## And your encryption pairs will be good to go
-![Pairs](public/crypto2.png)
-## Now what do you do with these key pairs?
-## They can be used to encrypt and decrypt data as follows: 
+
+## Now what do you do with these key pairs? They can be used to encrypt and decrypt data as follows: 
 Say you have an unencrypted message as an integer number, say 4. <br>
 Raise this number to the key E, say 5. So you get 1,024. This is your encrypted number. <br>
 This can be decrypted by raising the encryoted number to D, say 11, and taking its modulus N. <br>
@@ -16,6 +15,8 @@ Where M is the original message and C is the encrypted message, E is the public 
 Try this modulus calculator online to test your encryption pairs: <a> https://www.mtholyoke.edu/courses/quenell/s2003/ma139/js/powermod.html </a> or the nifty <a>https://www.emathcalculator.com/en/calculators/algebra/powerMod.php</a> <br>
 
 TypeScript was used in this application, as well as a compiler target for ES2020. This was needed to use the BigInt data type to perform these large computations. Regular integers were just not enough. <br> 
+
+### Live Mode Here: https://rsakeygen.herokuapp.com/ 
 
 ### Requirements 
 * Node.js, NPM 

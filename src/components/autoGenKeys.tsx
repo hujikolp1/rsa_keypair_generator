@@ -84,12 +84,12 @@ const AutoGenKeys:React.FC = ({...props})  => {
             <Button
                 variant='outlined'
                 size='large'
-                color='primary'
+                style={{color: 'black'}}
                 type='button' 
                 onClick={ clickShowFormulas }
             >
                 Show/Hide Formulas 
-            </Button> <br></br>
+            </Button> <br></br> <br></br>
 
             <div className='formulasTable' style={ {display: `${showFormulas}`} }>
                 <Table>

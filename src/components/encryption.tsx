@@ -24,10 +24,8 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any 
         let placeholder = (e.target.value);
         console.log('placeholder ', placeholder); 
         placeholder = BigInt(placeholder);
-        console.log('bigint ', placeholder); 
         setBigNumInput(placeholder); 
-        console.log('inside handleNumInput ', bigNumInput); 
-
+        console.log('placeholder in handleNumInput => ', bigNumInput);
     }
 
 
@@ -86,6 +84,11 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any 
 
     const handleEncryption = async (e: { preventDefault: () => void; }) => {
         e.preventDefault(); 
+        if(bigNumInput >= (props.N -2) ) {
+            alert('Num to Encrypt must be less than N - 2'); 
+            document.getElementById('numToEncryptForm').reset();
+            return; 
+        }
         const encrypt = await handleSetEncryption(); 
         setEncryptedNum(encrypt); 
         // console.log('STATEFUL encrypted num ', encryptedNum); 
@@ -93,8 +96,8 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any 
 
 
     return(
-        <div>
-            <form>
+        <div className='encryptionContainer'>
+            <form id='numToEncryptForm'>
                 <Typography variant='h3'> Encrypt Your Number </ Typography>
 
                 <TextField onChange={handleNumChange} label='Num to Encrypt' /> <br></br>
@@ -113,7 +116,7 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any 
                     <text>ENCRYPT NUMBER</text>
                 </Button>  
             </form>
-            <Typography variant='h6'>Num to Decrypt: {encryptedNum ? String(encryptedNum).concat('n') : 'N/A'} </Typography> 
+            <Typography variant='h5'>Your Encrypted Num = {encryptedNum ? String(encryptedNum) : 'N/A'} </Typography> <br></br> 
 
             {encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum}/>}
         </div>

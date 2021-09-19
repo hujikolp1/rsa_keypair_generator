@@ -15,7 +15,7 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any 
 
 
     useEffect( ()=>{
-        console.log('pulled in props encrypted Num => ', props.encryptedNum);
+        console.log('pulled in props encrypted Num => ', props.encryptedNum, ' -typeof- ', typeof props.encryptedNum);
         setEncryptedNum(props.encryptedNum); 
         console.log('setEncryptedNum => ', encryptedNum); 
         return () => {console.log('useEffect done')}
@@ -81,9 +81,10 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any 
     return(
         <div>
             <form>
-                <Typography variant='h3'> Decrypt Your Number </ Typography>
+                <Typography variant='h3'> Decrypt Your Number </ Typography> 
 
-                <TextField onChange={handleNumChange} label='Num to Decrypt' /> <br></br>
+                <Typography variant='h5'>Num to Decrypt = {encryptedNum?Number(encryptedNum):'loading'}</Typography> <br></br>     
+                <Typography variant='h5'>Hint: only D will work</Typography> <br></br>
                 <TextField onChange={handleChangeD} label='change your private key D!' value={changeD} /> <br></br>
             </form>
             <Button

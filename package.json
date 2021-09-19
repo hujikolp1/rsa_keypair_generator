@@ -1,5 +1,6 @@
 {
-  "name": "redux_msg",
+  "name": "rsa_keys_generator",
+  "author": "Harold Ulrich",
   "version": "3.0.0",
   "private": true,
   "dependencies": {
