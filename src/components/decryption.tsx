@@ -5,12 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import OutputDecrypted from './outputDecrypted'; 
 
 
-const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any; inputNumProp: any; decryptedNum: any }) => {
+const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any; inputNumProp: any; decryptedNum: any; }) => {
 
     // const [encryptedNumProps, setEncryptedNumProps] = useState<bigint>(); 
     const [encryptedNum, setEncryptedNum] = useState<any>(); 
     const [decryptedNum, setDecryptedNum] = useState<number>(); 
-
     const [changeD, setChangeD] = useState<bigint>(BigInt(props.D));
 
     useEffect( ()=>{
@@ -76,7 +75,6 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
 
         console.log('STATEFUL DEcrypted num ', decryptedNum); 
         console.log('TYPEOF STATEFUL DEcrypted num ', typeof decryptedNum); 
-
     }
 
 

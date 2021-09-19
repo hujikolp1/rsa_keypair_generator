@@ -10,7 +10,7 @@ import { placeholder } from '@babel/types';
 
 
 
-const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any; inputNumProp: any }) => {
+const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any; inputNumProp: any; }) => {
     
     const [bigNumInput, setBigNumInput] = useState<any>(); 
     const [inputNumProp, setInputNumProp] = useState<any>(); 
@@ -126,7 +126,7 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
             <Typography variant='h5'>Your Original Num = {inputNumProp?inputNumProp:'N/A'}</Typography> <br></br>
             <Typography variant='h5'>Your Encrypted Num = {encryptedNum ? String(encryptedNum) : 'N/A'} </Typography> <br></br> 
 
-            {encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum} inputNumProp={inputNumProp} decryptedNum={undefined}/>}
+            {encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum} inputNumProp={inputNumProp} decryptedNum={undefined} />}
         </div>
     )
 }

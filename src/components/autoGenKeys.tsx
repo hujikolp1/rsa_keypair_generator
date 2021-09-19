@@ -149,7 +149,7 @@ const AutoGenKeys:React.FC = ({...props})  => {
 
             </div>
 
-            <Encryption E={E} N={N} D={D} encryptedNum={undefined} inputNumProp={-1}/>
+            <Encryption E={E} N={N} D={D} encryptedNum={undefined} inputNumProp={-1} />
 
         </div>
         
