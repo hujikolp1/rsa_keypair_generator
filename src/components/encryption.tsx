@@ -10,9 +10,11 @@ import { placeholder } from '@babel/types';
 
 
 
-const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any }) => {
+const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any; inputNumProp: any }) => {
     
     const [bigNumInput, setBigNumInput] = useState<any>(); 
+    const [inputNumProp, setInputNumProp] = useState<any>(); 
+
 
     const [encryptedNum, setEncryptedNum] = useState<bigint>(); 
     const [encryptedNumDisplay, setEncryptedNumDisplay]=useState<string>('none');
@@ -21,12 +23,13 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any 
     const [charCodeArray, setCharCodeArray] = useState<number[]>([]); 
 
     useEffect( () => {
-        return () => {'useEffect done'}
+        return () => {}
     }, [bigNumInput]); 
 
     const handleNumChange = (e: { target: { value: any; }; }) => {
         let placeholder = (e.target.value);
         console.log('handleNumChange placeholder => ', placeholder); 
+        setInputNumProp(placeholder); 
         placeholder = BigInt(placeholder);
         setBigNumInput(placeholder); 
     }
@@ -101,27 +104,29 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any 
     return(
         <div className='encryptionContainer'>
             <form id='numToEncryptForm'>
-                <Typography variant='h3'> Encrypt Your Number </ Typography>
-
-                <TextField onChange={handleNumChange} label='Num to Encrypt' /> <br></br>
-                <Typography>E = {props.E}</Typography> <br></br>
-                <Typography>N = {props.N}</Typography> <br></br>   
-                <Typography>D = {props.D}</Typography> <br></br>     
+                <div style={{border:'3px solid black'}}>
+                    <Typography>E = {props.E}</Typography> <br></br>
+                    <Typography>N = {props.N}</Typography> <br></br>   
+                    <Typography>D = {props.D}</Typography>  
+                </div> 
+                <Typography variant='h3'> Encrypt Your Number </ Typography> <br></br>
+                <TextField onChange={handleNumChange} label='Num to Encrypt' /> <br></br><br></br>
 
                 <Button 
                     // style={{display: `${encryptedNumDisplay}`}}
                     variant='outlined'
                     size='large'
-                    color='secondary'
+                    color='primary'
                     type='submit' 
                     onClick={handleEncryption}
                 >
-                    <text>ENCRYPT NUMBER</text>
+                    <text>ENCRYPT</text>
                 </Button>  
-            </form>
+            </form> <br></br>
+            <Typography variant='h5'>Your Original Num = {inputNumProp?inputNumProp:'N/A'}</Typography> <br></br>
             <Typography variant='h5'>Your Encrypted Num = {encryptedNum ? String(encryptedNum) : 'N/A'} </Typography> <br></br> 
 
-            {encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum}/>}
+            {encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum} inputNumProp={inputNumProp} decryptedNum={undefined}/>}
         </div>
     )
 }
