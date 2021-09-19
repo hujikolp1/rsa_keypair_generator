@@ -1,11 +1,11 @@
 import React from 'react'; 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Decryption from './decryption'; 
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { prodDependencies } from 'mathjs';
+import { bignumber, prodDependencies } from 'mathjs';
 import { placeholder } from '@babel/types';
 
 
@@ -20,12 +20,15 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any 
     const [message, setMessage] = useState<string>(''); 
     const [charCodeArray, setCharCodeArray] = useState<number[]>([]); 
 
+    useEffect( () => {
+        return () => {'useEffect done'}
+    }, [bigNumInput]); 
+
     const handleNumChange = (e: { target: { value: any; }; }) => {
         let placeholder = (e.target.value);
-        console.log('placeholder ', placeholder); 
+        console.log('handleNumChange placeholder => ', placeholder); 
         placeholder = BigInt(placeholder);
         setBigNumInput(placeholder); 
-        console.log('placeholder in handleNumInput => ', bigNumInput);
     }
 
 
@@ -69,7 +72,7 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any 
             try {
                 let bigE = BigInt(props.E); 
                 let bigN = BigInt(props.N); 
-                console.log('Promise big int num => ', bigNumInput); 
+                let bigEncrypted = BigInt(bigNumInput);
                 let encrypt:bigint = BigInt(bigNumInput); 
                 encrypt = (encrypt**bigE)%bigN;
                 console.log('NOT STATEFUL encrypt ', encrypt, ' typeof ', typeof encrypt); 
@@ -84,9 +87,9 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any 
 
     const handleEncryption = async (e: { preventDefault: () => void; }) => {
         e.preventDefault(); 
-        if(bigNumInput >= (props.N -2) ) {
-            alert('Num to Encrypt must be less than N - 2'); 
-            document.getElementById('numToEncryptForm').reset();
+        if( (bigNumInput >= (props.N -2)) || typeof bigNumInput !== 'bigint' ) {
+            alert('Num to Encrypt must be a number less than N - 2'); 
+            setBigNumInput(null); 
             return; 
         }
         const encrypt = await handleSetEncryption(); 
