@@ -93,7 +93,7 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
                 type='submit'
                 onClick={handleDecryption}
             >
-                <text>DECRYPT NUMBER</text>
+                <text>DECRYPT</text>
             </Button>  
 
             {decryptedNum && <OutputDecrypted inputNumProp={props.inputNumProp} decryptedNum={decryptedNum} />}

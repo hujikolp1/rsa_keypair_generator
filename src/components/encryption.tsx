@@ -14,11 +14,9 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
     
     const [bigNumInput, setBigNumInput] = useState<any>(); 
     const [inputNumProp, setInputNumProp] = useState<any>(); 
-
-
     const [encryptedNum, setEncryptedNum] = useState<bigint>(); 
-    const [encryptedNumDisplay, setEncryptedNumDisplay]=useState<string>('none');
 
+    // --------- needed for string message encryption 
     const [message, setMessage] = useState<string>(''); 
     const [charCodeArray, setCharCodeArray] = useState<number[]>([]); 
 
@@ -28,7 +26,7 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
 
     const handleNumChange = (e: { target: { value: any; }; }) => {
         let placeholder = (e.target.value);
-        console.log('handleNumChange placeholder => ', placeholder); 
+        // console.log('handleNumChange placeholder => ', placeholder); 
         setInputNumProp(placeholder); 
         placeholder = BigInt(placeholder);
         setBigNumInput(placeholder); 
@@ -98,6 +96,9 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
         const encrypt = await handleSetEncryption(); 
         setEncryptedNum(encrypt); 
         // console.log('STATEFUL encrypted num ', encryptedNum); 
+        document.getElementById('numInputTextField')?.remove();  
+        document.getElementById('numInputButton')?.remove();  
+
     }
 
 
@@ -110,10 +111,10 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
                     <Typography>D = {props.D}</Typography>  
                 </div> 
                 <Typography variant='h3'> Encrypt Your Number </ Typography> <br></br>
-                <TextField onChange={handleNumChange} label='Num to Encrypt' /> <br></br><br></br>
+                <TextField id='numInputTextField' onChange={handleNumChange} /> <br></br><br></br>
 
                 <Button 
-                    // style={{display: `${encryptedNumDisplay}`}}
+                    id='numInputButton'
                     variant='outlined'
                     size='large'
                     color='primary'
