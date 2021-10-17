@@ -37,14 +37,28 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
             try {
 
                 // console.log('USING state changeD => ', changeD,' -typeof- ', typeof changeD); 
-                let bigD = BigInt(changeD);
+                let bigD:any; 
+                let bigN:any; 
+                let bigEncrypt:any;
+                try {
+                    bigD = BigInt(changeD);
+                    bigN = BigInt(props.N); 
+                    bigEncrypt = encryptedNum; 
+                    bigEncrypt = BigInt(encryptedNum); 
+                }
+                catch(err){
+                    alert('Not a Number'); 
+                    console.error('Check Decryption.tsx component for error: ', err);
+                    return -1; 
+                }
+                // bigD = BigInt(changeD);
                 // console.log('USING regular props.D => ', props.D,' -typeof- ', typeof props.D); 
                 // console.log('USING bigint props.D => ', bigD,' -typeof- ', typeof bigD); 
-                let bigN = BigInt(props.N); 
+                // let bigN = BigInt(props.N); 
                 // console.log('USING regular props.N => ', props.N,' -typeof- ', typeof props.N); 
                 // console.log('USING bigint props.N => ', bigN,' -typeof- ', typeof bigN); 
-                let bigEncrypt:any = encryptedNum; 
-                bigEncrypt = BigInt(encryptedNum); 
+                // let bigEncrypt:any = encryptedNum; 
+                // bigEncrypt = BigInt(encryptedNum); 
                 // console.log('USING bigEncrypt => ', bigEncrypt, ' -typeof- ', typeof bigEncrypt); 
 
 

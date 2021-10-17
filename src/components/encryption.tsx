@@ -19,6 +19,7 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
     // --------- needed for string message encryption 
     const [message, setMessage] = useState<string>(''); 
     const [charCodeArray, setCharCodeArray] = useState<number[]>([]); 
+    // ---------
 
     useEffect( () => {
         return () => {}
@@ -28,7 +29,18 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
         let placeholder = (e.target.value);
         // console.log('handleNumChange placeholder => ', placeholder); 
         setInputNumProp(placeholder); 
-        placeholder = BigInt(placeholder);
+        try {
+            placeholder = BigInt(placeholder);
+        }
+        catch(err){
+            console.error('Check Encryption.tsx component for error: ', err);
+        }
+        // if(typeof placeholder !== 'bigint'){
+        //     alert('Please only input numbers up to the allowed maximum');
+        //     document.getElementById('numInputTextField')?.reset();  
+        //     placeholder = null; 
+        //     return -1; 
+        // }
         setBigNumInput(placeholder); 
     }
 
