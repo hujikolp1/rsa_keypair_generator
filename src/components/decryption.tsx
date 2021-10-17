@@ -7,16 +7,12 @@ import OutputDecrypted from './outputDecrypted';
 
 const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any; inputNumProp: any; decryptedNum: any; }) => {
 
-    // const [encryptedNumProps, setEncryptedNumProps] = useState<bigint>(); 
     const [encryptedNum, setEncryptedNum] = useState<any>(); 
     const [decryptedNum, setDecryptedNum] = useState<number>(); 
     const [changeD, setChangeD] = useState<bigint>(BigInt(props.D));
 
     useEffect( ()=>{
-        // console.log('pulled in inputNumProps => ', props.inputNumProp, '-', typeof props.inputNumProp); 
-        // console.log('pulled in props encrypted Num => ', props.encryptedNum, ' -typeof- ', typeof props.encryptedNum);
         setEncryptedNum(props.encryptedNum); 
-        // console.log('setEncryptedNum => ', encryptedNum); 
         return () => {console.log('useEffect done')}
     }, [encryptedNum]);
 
@@ -24,19 +20,14 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
         let placeholder = (e.target.value);
         placeholder = BigInt(placeholder);
         setEncryptedNum(placeholder);
-        // console.log('handleNumChange setEncryptedNum => ', encryptedNum, ' -typeof- ', typeof encryptedNum);
-
     }
     const handleChangeD = (e: { target: { value: any; }; }) => {
         let placeholder = (e.target.value);
         setChangeD(placeholder);
-        // console.log('ChangedD => ', changeD); 
     };
     const handleSetDecryption = ():Promise<number> => {
         return new Promise( (res, rej) => {
             try {
-
-                // console.log('USING state changeD => ', changeD,' -typeof- ', typeof changeD); 
                 let bigD:any; 
                 let bigN:any; 
                 let bigEncrypt:any;
@@ -51,27 +42,13 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
                     console.error('Check Decryption.tsx component for error: ', err);
                     return -1; 
                 }
-                // bigD = BigInt(changeD);
-                // console.log('USING regular props.D => ', props.D,' -typeof- ', typeof props.D); 
-                // console.log('USING bigint props.D => ', bigD,' -typeof- ', typeof bigD); 
-                // let bigN = BigInt(props.N); 
-                // console.log('USING regular props.N => ', props.N,' -typeof- ', typeof props.N); 
-                // console.log('USING bigint props.N => ', bigN,' -typeof- ', typeof bigN); 
-                // let bigEncrypt:any = encryptedNum; 
-                // bigEncrypt = BigInt(encryptedNum); 
-                // console.log('USING bigEncrypt => ', bigEncrypt, ' -typeof- ', typeof bigEncrypt); 
-
-
                 // ----------------------------------------
                 // --------------- decrypt
                 let bigPow = bigEncrypt**bigD ; 
                 let bigDecrypt = bigPow % bigN; 
                 // E^D mod N 
                 // ----------------------------------------
-
-                // console.log('NOT STATEFUL bigDecrypt ', bigDecrypt, ' typeof ', typeof bigDecrypt); 
                 let numberizeDecrypt = Number(bigDecrypt); 
-
                 res(numberizeDecrypt);
             }
             catch (error) {
@@ -86,12 +63,9 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
         let decrypt = await handleSetDecryption(); 
         decrypt = Number(decrypt); 
         setDecryptedNum(decrypt); 
-
         console.log('STATEFUL DEcrypted num ', decryptedNum); 
         console.log('TYPEOF STATEFUL DEcrypted num ', typeof decryptedNum); 
     }
-
-
 
     return(
         <div>
@@ -111,8 +85,6 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
             </Button>  
 
             {decryptedNum && <OutputDecrypted inputNumProp={props.inputNumProp} decryptedNum={decryptedNum} />}
-            
-     
         </div>
     )
 }

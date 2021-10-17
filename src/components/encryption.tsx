@@ -35,12 +35,6 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
         catch(err){
             console.error('Check Encryption.tsx component for error: ', err);
         }
-        // if(typeof placeholder !== 'bigint'){
-        //     alert('Please only input numbers up to the allowed maximum');
-        //     document.getElementById('numInputTextField')?.reset();  
-        //     placeholder = null; 
-        //     return -1; 
-        // }
         setBigNumInput(placeholder); 
     }
 
