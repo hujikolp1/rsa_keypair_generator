@@ -2,15 +2,15 @@ import React, { FunctionComponent } from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { genPrimeArr } from './mainFunctions/genPrimeArr';
-import { genRandomPrimes } from './mainFunctions/genRandomPrimes'; 
-import { generateE } from './mainFunctions/generateE'; 
-import { generateD } from './mainFunctions/generateD'; 
+import { genPrimeArr } from '../mainFunctions/genPrimeArr';
+import { genRandomPrimes } from '../mainFunctions/genRandomPrimes'; 
+import { generateE } from '../mainFunctions/generateE'; 
+import { generateD } from '../mainFunctions/generateD'; 
 import Table from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
-import Encryption from './encryption'; 
+import Encryption from '../encoding/encryption'; 
 import { Button } from '@material-ui/core';
 
 
