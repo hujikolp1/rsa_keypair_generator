@@ -18,7 +18,6 @@
     //     }
     //     setCharCodeArray(intArray); 
 
-
     //     console.log('INT ARRAY: ', intArray); 
     //     console.log('Char Code Array: ', charCodeArray)
 
