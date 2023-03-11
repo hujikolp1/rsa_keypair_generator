@@ -66,8 +66,8 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
         const encrypt = await handleSetEncryption(); 
         setEncryptedNum(encrypt); 
         // console.log('STATEFUL encrypted num ', encryptedNum); 
-        document.getElementById('numInputTextField')?.remove();  
-        document.getElementById('numInputButton')?.remove();  
+        document.getElementById('numInputTextField')!.remove();  
+        document.getElementById('numInputButton')!.remove();  
 
     }
 
