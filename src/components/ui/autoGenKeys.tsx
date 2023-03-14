@@ -1,17 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import { genPrimeArr } from '../mainFunctions/genPrimeArr';
 import { genRandomPrimes } from '../mainFunctions/genRandomPrimes'; 
 import { generateE } from '../mainFunctions/generateE'; 
 import { generateD } from '../mainFunctions/generateD'; 
-import Table from '@material-ui/core/Table';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
 
 import Encryption from '../encoding/encryption'; 
-import { Button } from '@material-ui/core';
 
 
 const AutoGenKeys:React.FC = ({...props})  => {
@@ -81,71 +76,69 @@ const AutoGenKeys:React.FC = ({...props})  => {
 
     return (
         <div>
-            <Button
-                variant='outlined'
-                size='large'
+            <button
                 style={{color: 'black'}}
                 type='button' 
                 onClick={ clickShowFormulas }
             >
                 Show/Hide Formulas 
-            </Button> <br></br> <br></br>
+            </button> <br></br> <br></br>
 
             <div className='formulasTable' style={ {display: `${showFormulas}`} }>
-                <Table>
+                <table>
 
                     <br></br>
-                    <TableRow>
-                        <TableCell align='center'> 
+                    <tr>
+                        <td align='center'> 
                             Prime Array = [{primeArray.map(i => {
                                 return i+', ';
                             })}]
-                        </TableCell>                    
-                    </TableRow>
+                        </td>                    
+                    </tr>
 
                     <br></br>
-                    <TableRow>
-                        <TableCell align='center'> 
+                    <tr>
+                        <td align='center'> 
                             Prime1 = {p1} 
-                        </TableCell>                    
-                    </TableRow>
+                        </td>                    
+                    </tr>
 
                     <br></br>
-                    <TableRow>
-                        <TableCell align='center'> 
+                    <tr>
+                        <td align='center'> 
                             Prime2 = {p2}
-                        </TableCell>                    
-                    </TableRow>
+                        </td>                    
+                    </tr>
 
                     <br></br>
-                    <TableRow>
-                        <TableCell align='center'> 
+                    <tr>
+                        <td align='center'> 
                             N = {N}
-                        </TableCell>                    
-                    </TableRow>
+                        </td>                    
+                    </tr>
 
                     <br></br>
-                    <TableRow>
-                        <TableCell align='center'> 
+                    <tr>
+                        <td align='center'> 
                             &#x3D5; = {phiN}
-                        </TableCell>                    
-                    </TableRow>
+                        </td>                    
+                    </tr>
 
                     <br></br>
-                    <TableRow>
-                        <TableCell align='center'> 
+                    <tr>
+                        <td align='center'> 
                             E = {E}
-                        </TableCell>                    
-                    </TableRow>
+                        </td>                    
+                    </tr>
 
                     <br></br>
-                    <TableRow>
-                        <TableCell align='center'> 
+                    <tr>
+                        <td align='center'> 
                             D = {D}
-                        </TableCell>                    
-                    </TableRow>
+                        </td>                    
+                    </tr>
 
-                </Table>
+                </table>
 
             </div>
 

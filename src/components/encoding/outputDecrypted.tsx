@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Typography } from "@material-ui/core";
 
 const OutputDecrypted = (props: {inputNumProp: number; decryptedNum: any; }) => {
     const [decryptStyleText, setDecryptStyleText] = useState<Object>({}); 
@@ -15,9 +14,9 @@ const OutputDecrypted = (props: {inputNumProp: number; decryptedNum: any; }) => 
 
     
     return (
-        <Typography style={ decryptStyleText } variant='h5'>
+        <h5 style={ decryptStyleText }>
             Decrypted: { props.decryptedNum ? props.decryptedNum : 'N/A' } 
-        </Typography> 
+        </h5> 
     )
 }
 

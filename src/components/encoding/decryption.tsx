@@ -1,7 +1,4 @@
 import React, { useState , useEffect } from 'react'; 
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import OutputDecrypted from './outputDecrypted'; 
 
 
@@ -70,19 +67,16 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
     return(
         <div>
             <form>
-                <Typography variant='h3'> Decrypt Your Number </ Typography> <br></br>
-                <Typography variant='h5'>Hint: only D = {props.D} will work</Typography> <br></br>
-                <TextField onChange={handleChangeD} label='use your private key D!' value={changeD} /> <br></br>
+                <h3> Decrypt Your Number </ h3> <br></br>
+                <h5>Hint: only D = {props.D} will work</h5> <br></br>
+                <input onChange={handleChangeD} placeholder='use your private key D!' value={String(changeD)} /> <br></br>
             </form> <br></br>
-            <Button
-                variant='outlined'
-                size='large'
-                color='primary'
+            <button
                 type='submit'
                 onClick={handleDecryption}
             >
                 <text>DECRYPT</text>
-            </Button>  
+            </button>  
 
             {decryptedNum && <OutputDecrypted inputNumProp={props.inputNumProp} decryptedNum={decryptedNum} />}
         </div>
