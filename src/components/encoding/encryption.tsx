@@ -37,13 +37,7 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
                 let bigN = BigInt(props.N); 
                 let encrypt:any = BigInt(bigNumInput);
                 encrypt = (encrypt**bigE)%bigN;
-
-                // let bigE = 100n
-                // let bigN = 200n
-                // let encrypt = bigE + bigN
-                // console.log('=======> ', encrypt)
-
-                console.log('NOT STATEFUL encrypt ', encrypt, ' typeof ', typeof encrypt); 
+                //console.log('NOT STATEFUL encrypt ', encrypt, ' typeof ', typeof encrypt); 
                 res(encrypt);
             }
             catch (error) {

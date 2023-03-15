@@ -10,7 +10,7 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
 
     useEffect( ()=>{
         setEncryptedNum(props.encryptedNum); 
-        return () => {console.log('useEffect done')}
+        return () => {}
     }, [encryptedNum]);
 
     const handleNumChange = (e: { target: { value: any; }; }) => {
@@ -60,8 +60,8 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
         let decrypt = await handleSetDecryption(); 
         decrypt = Number(decrypt); 
         setDecryptedNum(decrypt); 
-        console.log('STATEFUL DEcrypted num ', decryptedNum); 
-        console.log('TYPEOF STATEFUL DEcrypted num ', typeof decryptedNum); 
+        // console.log('STATEFUL DEcrypted num ', decryptedNum); 
+        // console.log('TYPEOF STATEFUL DEcrypted num ', typeof decryptedNum); 
     }
 
     return(
