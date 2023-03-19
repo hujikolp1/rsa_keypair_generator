@@ -5,6 +5,16 @@
 /.pnp
 .pnp.js
 
+# firebase
+.firebaserc
+database.rules.json
+firebase.json
+firestore.indexes.json
+firestore.rules
+remoteconfig.template.json
+storage.rules
+
+
 # testing
 /coverage
 
