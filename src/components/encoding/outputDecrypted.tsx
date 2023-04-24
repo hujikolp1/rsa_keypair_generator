@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "../../../pkgs/react";
 
 const OutputDecrypted = (props: {inputNumProp: number; decryptedNum: any; }) => {
     const [decryptStyleText, setDecryptStyleText] = useState<Object>({}); 
@@ -12,12 +12,11 @@ const OutputDecrypted = (props: {inputNumProp: number; decryptedNum: any; }) => 
         return () => {}
     },[props.decryptedNum])
 
-    
     return (
         <h5 style={ decryptStyleText }>
             Decrypted: { props.decryptedNum ? props.decryptedNum : 'N/A' } 
         </h5> 
     )
-}
+};
 
 export default OutputDecrypted; 

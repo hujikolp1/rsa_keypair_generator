@@ -1,18 +1,15 @@
-export const generateD = (phiN:number, E:number):number => {
+export const generateD = (phiN: number, E: number): number => {
     // d*e = 1 mod N 
-    let D:number=1; 
+    let D: number = 1; 
 
-    while( ((D*Number(E)) % phiN !== 1) && D<10000 ) {
-        // console.log('d -> ', (D*Number(E)) % phiN)
+    while( ((D * Number(E)) % phiN !== 1) && D<10000 ) {
         if((D*Number(E)) % phiN === 1 ){
-            console.log("FOUND ONE D ", D)
             break
         }
         D++;
 
         if(D===10000) {
-            let errorD:string = ('Computation > 10000. Try Again.');
-            console.error(errorD); 
+            let errorD: string = ('Computation > 10000. Try Again.');
             D=-1; 
             window.location.reload(); 
             break; 
@@ -20,6 +17,5 @@ export const generateD = (phiN:number, E:number):number => {
             // must restart from top based on new inputs 
         }
     }
-
     return D; 
-}
+};

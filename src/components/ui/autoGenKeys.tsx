@@ -1,15 +1,15 @@
-import React, { FunctionComponent } from 'react';
-import { useState, useEffect } from 'react';
+import React from '../../../pkgs/react';
+import { useState, useEffect } from '../../../pkgs/react';
 
-import { genPrimeArr } from '../mainFunctions/genPrimeArr';
-import { genRandomPrimes } from '../mainFunctions/genRandomPrimes'; 
-import { generateE } from '../mainFunctions/generateE'; 
-import { generateD } from '../mainFunctions/generateD'; 
+import { genPrimeArr } from '../mainFunctions/genPrimeArr.tsx';
+import { genRandomPrimes } from '../mainFunctions/genRandomPrimes.tsx'; 
+import { generateE } from '../mainFunctions/generateE.tsx'; 
+import { generateD } from '../mainFunctions/generateD.tsx'; 
 
-import Encryption from '../encoding/encryption'; 
+import Encryption from '../encoding/encryption.tsx'; 
 
 
-const AutoGenKeys:React.FC = ({...props})  => {
+const AutoGenKeys: React.FC = ({...props})  => {
 
     // ------------------------------------------------------------
     // FORMULA state variables
@@ -51,17 +51,17 @@ const AutoGenKeys:React.FC = ({...props})  => {
             generatedE
         ); 
         if(generatedD != generatedE) {
-            console.log('GENERATED D ', generatedD);
+            // console.log('GENERATED D ', generatedD);
             setD(generatedD);
         }
         else {
-            console.error('E and D are the same ... regenerating ... ');
+            // console.error('E and D are the same ... regenerating ... ');
             let errorGenerating:number = -1;
             setD(errorGenerating); 
             window.location.reload(); 
         }
         
-        return () => {console.log('end useEffect()')}
+        return () => {};
 
     }, []); /* --- end useEffect() --- */ 
 
@@ -75,71 +75,57 @@ const AutoGenKeys:React.FC = ({...props})  => {
     };
 
     return (
-        <div>
-            <button
+        <div className='autoGenKeys'>
+            {/* <button
                 style={{color: 'black'}}
                 type='button' 
                 onClick={ clickShowFormulas }
             >
                 Show/Hide Formulas 
-            </button> <br></br> <br></br>
+            </button> */}
 
             <div className='formulasTable' style={ {display: `${showFormulas}`} }>
                 <table>
-
-                    <br></br>
-                    <tr>
-                        <td align='center'> 
-                            Prime Array = [{primeArray.map(i => {
-                                return i+', ';
-                            })}]
-                        </td>                    
-                    </tr>
-
-                    <br></br>
-                    <tr>
-                        <td align='center'> 
-                            Prime1 = {p1} 
-                        </td>                    
-                    </tr>
-
-                    <br></br>
-                    <tr>
-                        <td align='center'> 
-                            Prime2 = {p2}
-                        </td>                    
-                    </tr>
-
-                    <br></br>
-                    <tr>
-                        <td align='center'> 
-                            N = {N}
-                        </td>                    
-                    </tr>
-
-                    <br></br>
-                    <tr>
-                        <td align='center'> 
-                            &#x3D5; = {phiN}
-                        </td>                    
-                    </tr>
-
-                    <br></br>
-                    <tr>
-                        <td align='center'> 
-                            E = {E}
-                        </td>                    
-                    </tr>
-
-                    <br></br>
-                    <tr>
-                        <td align='center'> 
-                            D = {D}
-                        </td>                    
-                    </tr>
-
+                    <tbody>
+                        <tr>
+                            <td align='center'> 
+                                Prime Array = [{primeArray.map((i: number) => {
+                                    return i+', ';
+                                })}]
+                            </td>                    
+                        </tr>
+                        <tr>
+                            <td align='center'> 
+                                Prime1 = {p1} 
+                            </td>                    
+                        </tr>
+                        <tr>
+                            <td align='center'> 
+                                Prime2 = {p2}
+                            </td>                    
+                        </tr>
+                        <tr>
+                            <td align='center'> 
+                                N = {N}
+                            </td>                    
+                        </tr>
+                        <tr>
+                            <td align='center'> 
+                                &#x3D5; = {phiN}
+                            </td>                    
+                        </tr>
+                        <tr>
+                            <td align='center'> 
+                                E = {E}
+                            </td>                    
+                        </tr>
+                        <tr>
+                            <td align='center'> 
+                                D = {D}
+                            </td>                    
+                        </tr>
+                    </tbody>
                 </table>
-
             </div>
 
             <Encryption E={E} N={N} D={D} encryptedNum={undefined} inputNumProp={-1} />

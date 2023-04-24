@@ -1,6 +1,4 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Link, NavLink, Redirect } from "react-router-dom";
-
+import React from '../../../pkgs/react'
 
 const DashBoard = () => {
 
@@ -8,9 +6,8 @@ const DashBoard = () => {
         <div className='dashboard'>
             <div className='navTitle'>
                 <nav id="navbar" className="nav">                
-                    <a href="/">REGENERATE KEYS</a>            
+                    <a href={window.location.href}>REGENERATE KEYS</a>            
                 </nav>
-                <h1 style={{color:'white'}}>RSA Keys Generator</h1><br></br> 
             </div>
         </div>
     )

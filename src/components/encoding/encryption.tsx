@@ -1,6 +1,6 @@
-import React from 'react'; 
-import { useState, useEffect } from 'react';
-import Decryption from './decryption'; 
+import React from '../../../pkgs/react'; 
+import { useState, useEffect } from '../../../pkgs/react';
+import Decryption from './decryption.tsx'; 
 
 const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any; inputNumProp: any; }) => {
     
@@ -8,18 +8,12 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
     const [inputNumProp, setInputNumProp] = useState<any>(); 
     const [encryptedNum, setEncryptedNum] = useState<bigint>(); 
 
-    // --------- needed for string message encryption 
-    const [message, setMessage] = useState<string>(''); 
-    const [charCodeArray, setCharCodeArray] = useState<number[]>([]); 
-    // ---------
-
     useEffect( () => {
         return () => {}
     }, [bigNumInput]); 
 
     const handleNumChange = (e: { target: { value: any; }; }) => {
         let placeholder = (e.target.value);
-        // console.log('handleNumChange placeholder => ', placeholder); 
         setInputNumProp(placeholder); 
         try {
             placeholder = BigInt(placeholder);
@@ -37,11 +31,10 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
                 let bigN = BigInt(props.N); 
                 let encrypt:any = BigInt(bigNumInput);
                 encrypt = (encrypt**bigE)%bigN;
-                //console.log('NOT STATEFUL encrypt ', encrypt, ' typeof ', typeof encrypt); 
                 res(encrypt);
             }
             catch (error) {
-                console.log('encrypt promise error ... ')
+                console.error('encryption error ... ')
                 rej(error); 
             }
         })
@@ -56,7 +49,6 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
         }
         const encrypt = await handleSetEncryption(); 
         setEncryptedNum(encrypt); 
-        // console.log('STATEFUL encrypted num ', encryptedNum); 
         document.getElementById('numInputTextField')!.remove();  
         document.getElementById('numInputButton')!.remove();  
 
@@ -67,27 +59,26 @@ const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any;
         <div className='encryptionContainer'>
             <form id='numToEncryptForm'>
                 <div style={{border:'3px solid black'}}>
-                    <div>E = {props.E}</div> <br></br>
-                    <div>N = {props.N}</div> <br></br>   
+                    <div>E = {props.E}</div>
+                    <div>N = {props.N}</div> 
                     <div>D = {props.D}</div>  
                 </div> 
-                <h3> Encrypt Your Number </ h3> <br></br>
-                <input id='numInputTextField' onChange={handleNumChange} /> <br></br><br></br>
+                <h3> Encrypt Your Number </ h3>
+                <input id='numInputTextField' onChange={handleNumChange} />
 
                 <button 
                     id='numInputButton'
                     type='submit' 
                     onClick={handleEncryption}
                 >
-                    <text>ENCRYPT</text>
+                    <div>ENCRYPT</div>
                 </button>  
-            </form> <br></br>
-            <h5>Your Original Num = {inputNumProp?inputNumProp:'N/A'}</h5> <br></br>
-            <h5>Your Encrypted Num = {encryptedNum ? String(encryptedNum) : 'N/A'} </h5> <br></br> 
-
+            </form>
+            <h5>Your Original Num = {inputNumProp?inputNumProp:'N/A'}</h5>
+            <h5>Your Encrypted Num = {encryptedNum ? String(encryptedNum) : 'N/A'} </h5>
             {encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum} inputNumProp={inputNumProp} decryptedNum={undefined} />}
         </div>
     )
-}
+};
 
 export default Encryption; 

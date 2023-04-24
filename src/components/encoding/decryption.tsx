@@ -1,5 +1,5 @@
-import React, { useState , useEffect } from 'react'; 
-import OutputDecrypted from './outputDecrypted'; 
+import React, { useState , useEffect } from '../../../pkgs/react'; 
+import OutputDecrypted from './outputDecrypted.tsx'; 
 
 
 const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any; inputNumProp: any; decryptedNum: any; }) => {
@@ -13,15 +13,30 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
         return () => {}
     }, [encryptedNum]);
 
-    const handleNumChange = (e: { target: { value: any; }; }) => {
-        let placeholder = (e.target.value);
-        placeholder = BigInt(placeholder);
-        setEncryptedNum(placeholder);
-    }
+    useEffect(() => {
+        window.addEventListener("keypress", handleKeyPress);
+        return () => {
+          window.removeEventListener("keypress", handleKeyPress);
+        };
+      });
+
     const handleChangeD = (e: { target: { value: any; }; }) => {
         let placeholder = (e.target.value);
-        setChangeD(placeholder);
+        if (placeholder.length >= 7) {
+            alert('ERR: BigInt overflow. Value of D is too large.');
+            setChangeD(props.D);
+        } else {
+            setChangeD(placeholder);
+        }
     };
+
+    const handleKeyPress = (event: { preventDefault: any; key: string; keyCode: number; }) => {
+        if (event.key === "Enter" || event.keyCode === 13 ) {
+            event.preventDefault();
+            handleDecryption();
+        }
+    };
+
     const handleSetDecryption = ():Promise<number> => {
         return new Promise( (res, rej) => {
             try {
@@ -49,35 +64,33 @@ const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any;
                 res(numberizeDecrypt);
             }
             catch (error) {
-                console.error('decrypt promise error ... ')
+                console.error('decryption error ... ')
                 rej(error); 
             }
         })
     }
 
-    const handleDecryption = async (e: { preventDefault: () => void; }) => {
-        e.preventDefault(); 
+    const handleDecryption = async (e?: { preventDefault: () => void; }) => {
+        e?.preventDefault();
         let decrypt = await handleSetDecryption(); 
         decrypt = Number(decrypt); 
         setDecryptedNum(decrypt); 
-        // console.log('STATEFUL DEcrypted num ', decryptedNum); 
-        // console.log('TYPEOF STATEFUL DEcrypted num ', typeof decryptedNum); 
     }
 
     return(
         <div>
             <form>
-                <h3> Decrypt Your Number </ h3> <br></br>
-                <h5>Hint: only D = {props.D} will work</h5> <br></br>
-                <input onChange={handleChangeD} placeholder='use your private key D!' value={String(changeD)} /> <br></br>
-            </form> <br></br>
+                <h3> Decrypt Your Number </ h3>
+                <h5>Hint: only D = {props.D} will work</h5>
+                <input onChange={handleChangeD} placeholder='use your private key D!' value={String(changeD)} />
+            </form>
             <button
                 type='submit'
                 onClick={handleDecryption}
+                onKeyPress={handleKeyPress}
             >
-                <text>DECRYPT</text>
+                <div>DECRYPT</div>
             </button>  
-
             {decryptedNum && <OutputDecrypted inputNumProp={props.inputNumProp} decryptedNum={decryptedNum} />}
         </div>
     )
