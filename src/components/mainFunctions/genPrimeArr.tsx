@@ -1,6 +1,6 @@
-export const genPrimeArr = ():number[] => {
+export const genPrimeArr = (): number[] => {
 
-    let primeArr:number[] = []; 
+    let primeArr: number[] = []; 
     // some max prime number firstN, can also be higher but will need more computational power 
     // will run into problems if too large 
     let firstN:number = 149; 
@@ -15,7 +15,6 @@ export const genPrimeArr = ():number[] => {
             if(n !== i) { // avoid number%number, which is always going to be 0; also always avoid number%1 when checking for primes 
                 if((n % i) === 0){
                     primeCheck = false;
-                    // console.log('not a prime number: ', n, ' % ', i, ' = ', n%i); 
                     break; 
                 }    
             }
@@ -28,5 +27,4 @@ export const genPrimeArr = ():number[] => {
     // primeArr will contain 2 as a prime, as well as 3,5,7, etc.
     // consider popping these off the array because they are too low
     return primeArr;           
-}
-
+};
