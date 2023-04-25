@@ -12,3 +12,6 @@ node_modules/
 
 # Ignore environment files
 *.env
+
+# Ignore JS build asset
+public/bundle.js
