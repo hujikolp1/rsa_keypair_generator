@@ -1,8 +1,8 @@
+# Live Mode Here: https://rsakeygenerator-b7a79.web.app/
+
 # RSA Public and Private Encryption Key Pair Generator
 This TypsScript program will automatically generate pairs for you based on primes less than 149.
 Of course, you can increase this range of primes used but it will take up more computation time and energy. To change this range go to ```/src/components/mainFunctions``` and increase or decrease the prime numbers in the file ```genPrimeArr.tsx```. Once your encryption pairs are good to go you can use them for encryption and decryption. <br> 
-
-![Generator](public/crypto1.png)
 
 ## The RSA encryption and decryption algorithm works as follows: 
 Say you have an unencrypted message as an integer number, say 4. <br>
@@ -16,7 +16,6 @@ Try this modulus calculator online to test your encryption pairs: <a> https://ww
 
 TypeScript was used in this application, as well as a compiler target for ES2020. This was needed to use the BigInt data type to perform these large computations. Regular integers in regular JavaScript were just not enough. <br> 
 
-### Live Mode Here: https://rsakeygenerator-b7a79.web.app/
 
 ### Software Requirements 
 * ES2020, for use of BigInt data types
