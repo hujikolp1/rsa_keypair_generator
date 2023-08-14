@@ -76,6 +76,7 @@ const AutoGenKeys: React.FC = ({...props})  => {
 
     return (
         <div className='autoGenKeys'>
+            {/* Commenting out the math formulas for now, may include later as table or graph */}
             {/* <button
                 style={{color: 'black'}}
                 type='button' 
