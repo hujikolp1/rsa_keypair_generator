@@ -15,3 +15,6 @@ node_modules/
 
 # Ignore JS build asset
 public/bundle.js
+
+#Firebase Hosting Hashes
+.firebase/hosting.*
