@@ -24,7 +24,7 @@ TypeScript was used in this application, as well as a compiler target for ES2020
 * All packages and source code is preinstalled and bundled using `esbuild` (https://github.com/evanw/esbuild)
 * Open the `index.html` file in the `public` directory
 
-### To Compile From Source
+### To Build From Source
 * Requires a JavaScript bundler such as esbuild
 * Run the command in the `BUILD` file
 * You can use another bundler of your liking but will need to replace `esbuild` with your choice
