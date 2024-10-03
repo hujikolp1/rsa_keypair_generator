@@ -11,10 +11,9 @@ export const generateD = (phiN: number, E: number): number => {
         if(D===10000) {
             let errorD: string = ('Computation > 10000. Try Again.');
             D=-1; 
+            console.error('ERROR in generateD functional component: ', errorD)
             window.location.reload(); 
             break; 
-            // failed to generate based on conditionals
-            // must restart from top based on new inputs 
         }
     }
     return D; 
