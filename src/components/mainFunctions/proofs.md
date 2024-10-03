@@ -92,5 +92,3 @@ Flipping $D$ to ensure it is positive will still satisfy the overall RSA algorit
 
 ### Summary:
 As long as $D$ is correctly calculated as the modular inverse of $E$ with respect to $\phi(N)$\, flipping it to ensure positivity won't affect the correctness of the RSA algorithm. This is a common practice in modular arithmetic to maintain positive representations while working within the confines of the algorithm.
-
-
