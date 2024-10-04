@@ -8,91 +8,60 @@ import { generateD } from '../mainFunctions/generateD.tsx';
 
 import Encryption from '../encoding/encryption.tsx'; 
 
-
-const AutoGenKeys: React.FC = ({...props})  => {
-
-    // ------------------------------------------------------------
-    // FORMULA state variables
+const AutoGenKeys: React.FC = ({...props}) => {
     const [primeArray, setPrimeArray] = useState<number[]>([]); 
     const [randomPrimes, setRandomPrimes] = useState<number[]>([]);
-    const [p1, setP1] = useState<number>(-1);
-    const [p2, setP2] = useState<number>(-1);
-    const [N, setN] = useState<number>(-1); 
-    const [phiN, setPhiN] = useState<number>(-1); 
-    const [E, setE] = useState<number>(-1); 
-    const [D, setD] = useState<number>(-1); 
-    // ------------------------------------------------------------
+    const [p1, setP1] = useState<number | null>(null);
+    const [p2, setP2] = useState<number | null>(null);
+    const [N, setN] = useState<number | null>(null); 
+    const [phiN, setPhiN] = useState<number | null>(null); 
+    const [E, setE] = useState<number | null>(null); 
+    const [D, setD] = useState<number | null>(null); 
+    const [showFormulas, setShowFormulas] = useState<boolean>(false);
 
-    const [showFormulas, setShowFormulas] = useState<string>('none');
-
-    // ------------------------------------------------------------
-
- 
-    useEffect( () => {
-
-        const generatedPrimeArray:number[] = genPrimeArr(); 
+    useEffect(() => {
+        const generatedPrimeArray: number[] = genPrimeArr(); 
         setPrimeArray(generatedPrimeArray); 
 
-        const generatedRandomPrimes:number[] = genRandomPrimes(generatedPrimeArray); 
+        const generatedRandomPrimes: number[] = genRandomPrimes(generatedPrimeArray); 
         setRandomPrimes(generatedRandomPrimes); 
         setP1(generatedRandomPrimes[0]);
         setP2(generatedRandomPrimes[1]); 
         setN(generatedRandomPrimes[0] * generatedRandomPrimes[1]);
-        setPhiN( (generatedRandomPrimes[0] - 1) * (generatedRandomPrimes[1] - 1) );
+        setPhiN((generatedRandomPrimes[0] - 1) * (generatedRandomPrimes[1] - 1));
 
-        const generatedE:number = generateE(
+        const generatedE: number = generateE(
             generatedRandomPrimes[0] * generatedRandomPrimes[1], 
             ( (generatedRandomPrimes[0] - 1) * (generatedRandomPrimes[1] - 1) )
         ); 
         setE(generatedE); 
 
-        let generatedD:number = generateD(
+        const generatedD: number = generateD(
             ( (generatedRandomPrimes[0] - 1) * (generatedRandomPrimes[1] - 1) ),
             generatedE
         ); 
-        if(generatedD != generatedE) {
-            // console.log('GENERATED D ', generatedD);
+        if (generatedD !== generatedE) {
             setD(generatedD);
-        }
-        else {
-            // console.error('E and D are the same ... regenerating ... ');
-            let errorGenerating:number = -1;
-            setD(errorGenerating); 
+        } else {
+            console.error('E and D are the same ... regenerating ... ');
             window.location.reload(); 
         }
-        
-        return () => {};
 
-    }, []); /* --- end useEffect() --- */ 
+        return () => {};
+    }, []); 
 
     const clickShowFormulas = () => {
-        if(showFormulas === 'none') {
-            setShowFormulas('inline-block');
-        }
-        else {
-            setShowFormulas('none');
-        }
+        setShowFormulas(prev => !prev);
     };
 
     return (
         <div className='autoGenKeys'>
-            {/* Commenting out the math formulas for now, may include later as table or graph */}
-            {/* <button
-                style={{color: 'black'}}
-                type='button' 
-                onClick={ clickShowFormulas }
-            >
-                Show/Hide Formulas 
-            </button> */}
-
-            <div className='formulasTable' style={ {display: `${showFormulas}`} }>
+            <div className='formulasTable' style={{ display: showFormulas ? 'inline-block' : 'none' }}>
                 <table>
                     <tbody>
                         <tr>
                             <td align='center'> 
-                                Prime Array = [{primeArray.map((i: number) => {
-                                    return i+', ';
-                                })}]
+                                Prime Array = [{primeArray.join(', ')}]
                             </td>                    
                         </tr>
                         <tr>
@@ -129,14 +98,11 @@ const AutoGenKeys: React.FC = ({...props})  => {
                 </table>
             </div>
 
-            <Encryption E={E} N={N} D={D} encryptedNum={undefined} inputNumProp={-1} />
-
+            {E && N && D && (
+                <Encryption E={E} N={N} D={D} encryptedNum={undefined} inputNumProp={-1} />
+            )}
         </div>
-        
-    )
-        
-}
-
+    );
+};
 
 export default AutoGenKeys; 
-
