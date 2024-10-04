@@ -2,98 +2,82 @@ import React, { useState , useEffect } from '../../../pkgs/react';
 import OutputDecrypted from './outputDecrypted.tsx'; 
 
 
-const Decryption = (props: { N: number; E: number; D: number; encryptedNum: any; inputNumProp: any; decryptedNum: any; }) => {
-
-    const [encryptedNum, setEncryptedNum] = useState<any>(); 
+const Decryption = (props: { N: number; D: number; encryptedNum: any; inputNumProp: any; }) => {
     const [decryptedNum, setDecryptedNum] = useState<number>(); 
-    const [changeD, setChangeD] = useState<bigint>(BigInt(props.D));
-
-    useEffect( ()=>{
-        setEncryptedNum(props.encryptedNum); 
-        return () => {}
-    }, [encryptedNum]);
+    const [changeD, setChangeD] = useState<BigInt>(BigInt(props.D)); // Store D as BigInt
 
     useEffect(() => {
+        setChangeD(BigInt(props.D)); // Update state if props.D changes
+    }, [props.D]);
+
+    useEffect(() => {
+        const handleKeyPress = (event: KeyboardEvent) => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                handleDecryption();
+            }
+        };
+
         window.addEventListener("keypress", handleKeyPress);
         return () => {
-          window.removeEventListener("keypress", handleKeyPress);
+            window.removeEventListener("keypress", handleKeyPress);
         };
-      });
+    }, []); // Empty dependency array to add listener once
 
-    const handleChangeD = (e: { target: { value: any; }; }) => {
-        let placeholder = (e.target.value);
-        if (placeholder.length >= 7) {
+    const handleChangeD = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (value.length >= 7) {
             alert('ERR: BigInt overflow. Value of D is too large.');
-            setChangeD(props.D);
+            setChangeD(BigInt(props.D));
         } else {
-            setChangeD(placeholder);
+            setChangeD(BigInt(value));
         }
     };
 
-    const handleKeyPress = (event: { preventDefault: any; key: string; keyCode: number; }) => {
-        if (event.key === "Enter" || event.keyCode === 13 ) {
-            event.preventDefault();
-            handleDecryption();
+    const handleSetDecryption = async (): Promise<number> => {
+        try {
+            const bigD = changeD;
+            const bigN = BigInt(props.N); 
+            const bigEncrypt = BigInt(props.encryptedNum);
+
+            // Decrypt
+            const bigPow = bigEncrypt ** bigD; 
+            const bigDecrypt = bigPow % bigN; 
+            
+            return Number(bigDecrypt);
+        } catch (error) {
+            console.error('Decryption error: ', error);
+            throw error; 
         }
     };
 
-    const handleSetDecryption = ():Promise<number> => {
-        return new Promise( (res, rej) => {
-            try {
-                let bigD:any; 
-                let bigN:any; 
-                let bigEncrypt:any;
-                try {
-                    bigD = BigInt(changeD);
-                    bigN = BigInt(props.N); 
-                    bigEncrypt = encryptedNum; 
-                    bigEncrypt = BigInt(encryptedNum); 
-                }
-                catch(err){
-                    alert('Not a Number'); 
-                    console.error('Check Decryption.tsx component for error: ', err);
-                    return -1; 
-                }
-                // ----------------------------------------
-                // --------------- decrypt
-                let bigPow = bigEncrypt**bigD ; 
-                let bigDecrypt = bigPow % bigN; 
-                // E^D mod N 
-                // ----------------------------------------
-                let numberizeDecrypt = Number(bigDecrypt); 
-                res(numberizeDecrypt);
-            }
-            catch (error) {
-                console.error('decryption error ... ')
-                rej(error); 
-            }
-        })
-    }
-
-    const handleDecryption = async (e?: { preventDefault: () => void; }) => {
+    const handleDecryption = async (e?: React.FormEvent<HTMLFormElement>) => {
         e?.preventDefault();
-        let decrypt = await handleSetDecryption(); 
-        decrypt = Number(decrypt); 
-        setDecryptedNum(decrypt); 
-    }
+        try {
+            const decrypt = await handleSetDecryption(); 
+            setDecryptedNum(decrypt); 
+        } catch (error) {
+            console.error('Decryption failed: ', error);
+        }
+    };
 
-    return(
+    return (
         <div>
-            <form>
-                <h3> Decrypt Your Number </ h3>
+            <form onSubmit={handleDecryption}>
+                <h3>Decrypt Your Number</h3>
                 <h5>Hint: only D = {props.D} will work</h5>
-                <input onChange={handleChangeD} placeholder='use your private key D!' value={String(changeD)} />
+                <input 
+                    onChange={handleChangeD} 
+                    placeholder='Use your private key D!' 
+                    value={String(changeD)} 
+                />
+                <button type='submit'>
+                    <div>DECRYPT</div>
+                </button>
             </form>
-            <button
-                type='submit'
-                onClick={handleDecryption}
-                onKeyPress={handleKeyPress}
-            >
-                <div>DECRYPT</div>
-            </button>  
             {decryptedNum && <OutputDecrypted inputNumProp={props.inputNumProp} decryptedNum={decryptedNum} />}
         </div>
-    )
-}
+    );
+};
 
-export default Decryption; 
+export default Decryption;
