@@ -25,3 +25,4 @@ export const generateD = (phiN: number, E: number): number => {
 
     return D;
 };
+
