@@ -2,83 +2,83 @@ import React from '../../../pkgs/react';
 import { useState, useEffect } from '../../../pkgs/react';
 import Decryption from './decryption.tsx'; 
 
-const Encryption = (props: { N: number; E: number; D: number; encryptedNum: any; inputNumProp: any; }) => {
-    
-    const [bigNumInput, setBigNumInput] = useState<any>(); 
-    const [inputNumProp, setInputNumProp] = useState<any>(); 
-    const [encryptedNum, setEncryptedNum] = useState<bigint>(); 
 
-    useEffect( () => {
-        return () => {}
+const Encryption = (props: { N: number; E: number; D: number; }) => {
+    const [bigNumInput, setBigNumInput] = useState<string>(''); 
+    const [inputNumProp, setInputNumProp] = useState<string>(''); 
+    const [encryptedNum, setEncryptedNum] = useState<bigint | null>(null); 
+
+    useEffect(() => {
+        return () => {};
     }, [bigNumInput]); 
 
-    const handleNumChange = (e: { target: { value: any; }; }) => {
-        let placeholder = (e.target.value);
+    const handleNumChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const placeholder = e.target.value;
         setInputNumProp(placeholder); 
-        try {
-            placeholder = BigInt(placeholder);
-        }
-        catch(err){
-            console.error('Check Encryption.tsx component for error: ', err);
-        }
         setBigNumInput(placeholder); 
-    }
+    };
 
-    const handleSetEncryption = ():Promise<bigint> => {
-        return new Promise( (res, rej) => {
+    const handleSetEncryption = (): Promise<bigint> => {
+        return new Promise((res, rej) => {
             try {
-                let bigE = BigInt(props.E); 
-                let bigN = BigInt(props.N); 
-                let encrypt:any = BigInt(bigNumInput);
-                encrypt = (encrypt**bigE)%bigN;
+                const bigE = BigInt(props.E); 
+                const bigN = BigInt(props.N); 
+                const encrypt = (BigInt(bigNumInput) ** bigE) % bigN;
                 res(encrypt);
-            }
-            catch (error) {
-                console.error('encryption error ... ')
+            } catch (error) {
+                console.error('Encryption error: ', error);
                 rej(error); 
             }
-        })
-    }
+        });
+    };
 
-    const handleEncryption = async (e: { preventDefault: () => void; }) => {
+    const handleEncryption = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); 
-        if( (bigNumInput >= (props.N -2)) || typeof bigNumInput !== 'bigint' ) {
-            alert('Num to Encrypt must be a number less than N - 2'); 
-            setBigNumInput(null); 
+
+        // Convert bigNumInput to BigInt and check the value
+        let numToEncrypt: bigint;
+        try {
+            numToEncrypt = BigInt(bigNumInput);
+        } catch {
+            alert('Please enter a valid number.');
             return; 
         }
+
+        if (numToEncrypt >= (props.N - 2)) {
+            alert('Number to Encrypt must be less than N - 2'); 
+            return; 
+        }
+
         const encrypt = await handleSetEncryption(); 
         setEncryptedNum(encrypt); 
-        document.getElementById('numInputTextField')!.remove();  
-        document.getElementById('numInputButton')!.remove();  
+        setBigNumInput(''); // Reset input after encryption
+    };
 
-    }
-
-
-    return(
+    return (
         <div className='encryptionContainer'>
-            <form id='numToEncryptForm'>
-                <div style={{border:'3px solid black'}}>
+            <form id='numToEncryptForm' onSubmit={handleEncryption}>
+                <div style={{ border: '3px solid black' }}>
                     <div>E = {props.E}</div>
                     <div>N = {props.N}</div> 
                     <div>D = {props.D}</div>  
                 </div> 
-                <h3> Encrypt Your Number </ h3>
-                <input id='numInputTextField' onChange={handleNumChange} />
+                <h3> Encrypt Your Number </h3>
+                <input 
+                    id='numInputTextField' 
+                    value={bigNumInput} 
+                    onChange={handleNumChange} 
+                    placeholder="Enter a number to encrypt"
+                />
 
-                <button 
-                    id='numInputButton'
-                    type='submit' 
-                    onClick={handleEncryption}
-                >
+                <button type='submit'>
                     <div>ENCRYPT</div>
                 </button>  
             </form>
-            <h5>Your Original Num = {inputNumProp?inputNumProp:'N/A'}</h5>
+            <h5>Your Original Num = {inputNumProp || 'N/A'}</h5>
             <h5>Your Encrypted Num = {encryptedNum ? String(encryptedNum) : 'N/A'} </h5>
             {encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum} inputNumProp={inputNumProp} decryptedNum={undefined} />}
         </div>
-    )
+    );
 };
 
-export default Encryption; 
+export default Encryption;
