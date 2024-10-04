@@ -10,34 +10,22 @@ const isPrime = (num: number): boolean => {
     return true;
 };
 
-// export const genRandomPrimes = (primeArray: number[]): number[] => {
-//     let random1: number = Math.floor(Math.random() * (primeArray.length));
-//     let random2: number = Math.floor(Math.random() * (primeArray.length));
+export const genRandomPrimes = (primeArray: number[]): number[] => {
+    let random1: number = Math.floor(Math.random() * (primeArray.length));
+    let random2: number = Math.floor(Math.random() * (primeArray.length));
 
-//     // Ensure unique primes
-//     while (random2 === random1) {
-//         random2 = Math.floor(Math.random() * (primeArray.length));
-//     }
-
-//     // Ensure the selected numbers are prime
-//     const prime1 = primeArray[random1];
-//     const prime2 = primeArray[random2];
-
-//     if (!isPrime(prime1) || !isPrime(prime2)) {
-//         throw new Error("Generated numbers are not prime");
-//     }
-
-//     return [prime1, prime2];
-// };
-
-
-export const genRandomPrimes = (primeArray: number[], count: number): number[] => {
-    const selectedPrimes = new Set<number>();
-
-    while (selectedPrimes.size < count) {
-        const randomIndex = Math.floor(Math.random() * primeArray.length);
-        selectedPrimes.add(primeArray[randomIndex]); // Set handles uniqueness
+    // Ensure unique primes
+    while (random2 === random1) {
+        random2 = Math.floor(Math.random() * (primeArray.length));
     }
 
-    return Array.from(selectedPrimes); // Convert Set back to Array
+    // Ensure the selected numbers are prime
+    const prime1 = primeArray[random1];
+    const prime2 = primeArray[random2];
+
+    if (!isPrime(prime1) || !isPrime(prime2)) {
+        throw new Error("Generated numbers are not prime");
+    }
+
+    return [prime1, prime2];
 };
