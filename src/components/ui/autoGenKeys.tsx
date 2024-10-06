@@ -93,10 +93,12 @@ const AutoGenKeys: React.FC = ({...props}) => {
                 </section>
             </div>
 
+            <div>
+                {E && N && D && (
+                    <Encryption E={E} N={N} D={D} encryptedNum={undefined} inputNumProp={-1} />
+                )}                
+            </div>
 
-            {E && N && D && (
-                <Encryption E={E} N={N} D={D} encryptedNum={undefined} inputNumProp={-1} />
-            )}
         </div>
     );
 };

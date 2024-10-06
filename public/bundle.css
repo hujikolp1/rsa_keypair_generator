@@ -11,14 +11,16 @@
 }
 .rsa-values {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   justify-content: left;
+  width: 100%;
 }
 .grid-item {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  white-space: nowrap;
 }
 dt {
   font-weight: bold;

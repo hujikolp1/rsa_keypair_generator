@@ -3,7 +3,13 @@ import { useState, useEffect } from '../../../pkgs/react';
 import Decryption from './decryption.tsx'; 
 
 
-const Encryption = (props: { N: number; E: number; D: number; }) => {
+const Encryption = (props: {
+        N: number; 
+        E: number; 
+        D: number; 
+        encryptedNum: number | undefined; 
+        inputNumProp: number
+    }) => {
     const [bigNumInput, setBigNumInput] = useState<string>(''); 
     const [inputNumProp, setInputNumProp] = useState<string>(''); 
     const [encryptedNum, setEncryptedNum] = useState<bigint | null>(null); 
