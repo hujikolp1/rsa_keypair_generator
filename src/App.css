@@ -8,8 +8,36 @@
 
 }
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
+
+.App-header {
+  /* background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white; */
+}
+
+.App-link {
+  /* color: #61dafb; */
+}
+
+body { 
+  /* margin: 0; 
+  padding: 0; 
+  background: rgb(155, 155, 180); 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh;  */
+} 
+
+
+/* 
 .main_generator {
   color: white
 }
@@ -54,36 +82,27 @@
   padding: 5px 5px;
   text-align: left;
 
-}
+} */
 
 
 
 /* ----------------------------------------------------- */
 
 
-body { 
-  /* margin: 0; 
-  padding: 0;  */
-  background: rgb(155, 155, 180); 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  /* height: 100vh;  */
-} 
-
+/* 
 .hover_buttons { 
   width: 80px; 
   height: 80px; 
   background: rgb(197, 211, 0); 
   border-radius: 20%; 
-  /* box-shadow: 0 0 20px rgb(97, 134, 255), 
+  box-shadow: 0 0 20px rgb(97, 134, 255), 
               0 0 40px rgb(97, 134, 255),  
               0 0 60px rgb(0, 27, 117),  
               0 0 80px rgb(0, 27, 117),  
               0 0 120px rgb(0, 40, 172), 
               0 0 220px rgb(107, 106, 151), 
               0px 0px 320px rgb(107, 106, 151); 
-  transition:3s;  */
+  transition:3s; 
 } 
 
 .hover_buttons:hover { 
@@ -95,27 +114,5 @@ body {
               0 0 400px rgb(20, 50, 114),  
               0 0 450px rgb(20, 50, 114); 
   transition: 3s; 
-} 
+}  */
 
-/* ----------------------------------------------------- */
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}

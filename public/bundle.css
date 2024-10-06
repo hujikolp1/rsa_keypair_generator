@@ -1,3 +1,34 @@
+/* src/components/ui/autoGenKeys.css */
+.formulas-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px auto;
+  max-width: 80%;
+}
+.show-formulas-btn {
+  display: block;
+}
+.rsa-values {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  justify-content: left;
+}
+.grid-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+dt {
+  font-weight: bold;
+  margin-right: 10px;
+}
+dd {
+  margin: 0;
+  font-weight: normal;
+}
+
 /* src/App.css */
 :root {
   --main-white: #f0f0f0;
@@ -7,88 +38,10 @@
   font-size: 36px;
 }
 .App {
-  text-align: center;
-}
-.main_generator {
-  color: white;
-}
-.autoGenKeys {
-  min-width: 250px;
-}
-.get_random_primes {
-  color: white;
-  border: solid #caac00;
-  border-radius: 20%;
-}
-.get_e {
-  color: white;
-  border: solid #caac00;
-  border-radius: 20%;
-}
-.get_d {
-  color: white;
-  border: solid #caac00;
-  border-radius: 20%;
-}
-.nav {
-  display: flex;
-  justify-content: space-around;
-  position: relative;
-  padding: 10px 0;
-  font-weight: bolder;
-  font-stretch: ultra-expanded;
-  top: 0;
-  left: 0;
-  margin-bottom: 16px;
-  bottom: auto;
-  width: 100%;
-  background: var(--main-gold);
-  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.4);
-  z-index: 10;
-}
-.encryptionContainer {
-  border: 3px dotted whitesmoke;
-  padding: 5px 5px;
-  text-align: left;
-}
-body {
-  background: rgb(155, 155, 180);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.hover_buttons {
-  width: 80px;
-  height: 80px;
-  background: rgb(197, 211, 0);
-  border-radius: 20%;
-}
-.hover_buttons:hover {
-  box-shadow:
-    0px 0px 3000px rgb(114, 20, 20),
-    0 0 60px rgb(20, 50, 114),
-    0 0 100px rgb(20, 50, 114),
-    0 0 120px rgb(20, 50, 114),
-    0 0 200px rgb(20, 50, 114),
-    0 0 400px rgb(20, 50, 114),
-    0 0 450px rgb(20, 50, 114);
-  transition: 3s;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 .App-link {
-  color: #61dafb;
+}
+body {
 }
