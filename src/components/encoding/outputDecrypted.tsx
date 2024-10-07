@@ -22,9 +22,9 @@ const OutputDecrypted = (props: { inputNumProp: number; decryptedNum: number | n
     }, [props.inputNumProp, props.decryptedNum]);
 
     return (
-        <h5 style={decryptStyleText}>
+        <div style={decryptStyleText}>
             Decrypted: {props.decryptedNum !== null ? props.decryptedNum : 'N/A'}
-        </h5>
+        </div>
     );
 };
 

@@ -12,10 +12,6 @@
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
-#numToEncryptForm,
-.encryptedNumsDisplay {
-  grid-column: 1 / -1;
-}
 
 /* src/components/ui/autoGenKeys.css */
 .show-formulas-btn {

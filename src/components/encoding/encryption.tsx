@@ -63,35 +63,37 @@ const Encryption = (props: {
 
     return (
         <div className='cryptContainer'>
-            <form id='numToEncryptForm' onSubmit={handleEncryption}>
-                <div> Encrypt Your Number </div>
-                <input 
-                    id='numInputTextField' 
-                    value={bigNumInput} 
-                    onChange={handleNumChange} 
-                    placeholder="Enter a number to encrypt"
-                />
-                <button type='submit'>
-                    <div>ENCRYPT</div>
-                </button>  
-            </form>
-
-            <div className='encryptedNumsDisplay'>
-                <div>Your Original Num = {inputNumProp || 'N/A'}</div>
-                <div>Your Encrypted Num = {encryptedNum ? String(encryptedNum) : 'N/A'} </div>
-            </div>
-
-            <div className={`decryptionWrapper ${encryptedNum ? 'active' : ''}`}>
-                {encryptedNum && (
-                    <Decryption 
-                        E={props.E} 
-                        N={props.N} 
-                        D={props.D} 
-                        encryptedNum={encryptedNum} 
-                        inputNumProp={inputNumProp} 
-                        decryptedNum={undefined} 
+            <div className='encryptSection'>
+                <form id='numToEncryptForm' onSubmit={handleEncryption}>
+                    <div> Encrypt Your Number </div>
+                    <input 
+                        id='numInputTextField' 
+                        value={bigNumInput} 
+                        onChange={handleNumChange} 
+                        placeholder="Enter a number to encrypt"
                     />
-                )}
+                    <button type='submit'>
+                        <div>ENCRYPT</div>
+                    </button>  
+                </form>
+                <div className='encryptedNumsDisplay'>
+                    <div>Your Original Num = {inputNumProp || 'N/A'}</div>
+                    <div>Your Encrypted Num = {encryptedNum ? String(encryptedNum) : 'N/A'} </div>
+                </div>                
+            </div>
+            <div className={`decryptSection ${encryptedNum ? 'active' : ''}`}>
+                <div>
+                    {encryptedNum && (
+                        <Decryption 
+                            E={props.E} 
+                            N={props.N} 
+                            D={props.D} 
+                            encryptedNum={encryptedNum} 
+                            inputNumProp={inputNumProp} 
+                            decryptedNum={undefined} 
+                        />
+                    )}                    
+                </div>
             </div>
         </div>
 
