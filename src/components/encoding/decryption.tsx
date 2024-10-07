@@ -2,7 +2,7 @@ import React, { useState , useEffect } from '../../../pkgs/react';
 import OutputDecrypted from './outputDecrypted.tsx'; 
 
 
-const Decryption = (props: { N: number; D: number; encryptedNum: any; inputNumProp: any; }) => {
+const Decryption = (props: { N: number; D: number; E: number; encryptedNum: any; decryptedNum: any; inputNumProp: any; }) => {
     const [decryptedNum, setDecryptedNum] = useState<number>(); 
     const [changeD, setChangeD] = useState<BigInt>(BigInt(props.D)); // Store D as BigInt
 
@@ -64,8 +64,8 @@ const Decryption = (props: { N: number; D: number; encryptedNum: any; inputNumPr
     return (
         <div>
             <form onSubmit={handleDecryption}>
-                <h3>Decrypt Your Number</h3>
-                <h5>Hint: only D = {props.D} will work</h5>
+                <div>Decrypt Your Number</div>
+                <div>Hint: only D = {props.D} will work</div>
                 <input 
                     onChange={handleChangeD} 
                     placeholder='Use your private key D!' 

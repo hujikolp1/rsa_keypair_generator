@@ -1,0 +1,17 @@
+.cryptContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.decryptionWrapper {
+    display: none;
+}
+
+.decryptionWrapper.active {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+

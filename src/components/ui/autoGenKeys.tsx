@@ -8,6 +8,9 @@ import { generateD } from '../mainFunctions/generateD.tsx';
 
 import Encryption from '../encoding/encryption.tsx'; 
 
+import './autoGenKeys.css';
+
+
 const AutoGenKeys: React.FC = ({...props}) => {
     const [primeArray, setPrimeArray] = useState<number[]>([]); 
     const [randomPrimes, setRandomPrimes] = useState<number[]>([]);
@@ -50,57 +53,35 @@ const AutoGenKeys: React.FC = ({...props}) => {
         return () => {};
     }, []); 
 
-    const clickShowFormulas = () => {
-        setShowFormulas(prev => !prev);
-    };
 
     return (
         <div className='autoGenKeys'>
-            <div className='formulasTable' style={{ display: showFormulas ? 'inline-block' : 'none' }}>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td align='center'> 
-                                Prime Array = [{primeArray.join(', ')}]
-                            </td>                    
-                        </tr>
-                        <tr>
-                            <td align='center'> 
-                                Prime1 = {p1} 
-                            </td>                    
-                        </tr>
-                        <tr>
-                            <td align='center'> 
-                                Prime2 = {p2}
-                            </td>                    
-                        </tr>
-                        <tr>
-                            <td align='center'> 
-                                N = {N}
-                            </td>                    
-                        </tr>
-                        <tr>
-                            <td align='center'> 
-                                &#x3D5; = {phiN}
-                            </td>                    
-                        </tr>
-                        <tr>
-                            <td align='center'> 
-                                E = {E}
-                            </td>                    
-                        </tr>
-                        <tr>
-                            <td align='center'> 
-                                D = {D}
-                            </td>                    
-                        </tr>
-                    </tbody>
-                </table>
+            <div className='formulasTable'>
+                <section className='formulas-grid-layout'>
+                    <div className='keys-column'>
+                        <div className='grid-item'><dt>Prime1:</dt></div>
+                        <div className='grid-item'><dt>Prime2:</dt></div>
+                        <div className='grid-item'><dt>N:</dt></div>
+                        <div className='grid-item'><dt>&#x3D5;(N):</dt></div>
+                        <div className='grid-item'><dt>E:</dt></div>
+                        <div className='grid-item'><dt>D:</dt></div>
+                    </div>
+                    <div className='values-column'>
+                        <div className='grid-item'><dd>{p1}</dd></div>
+                        <div className='grid-item'><dd>{p2}</dd></div>
+                        <div className='grid-item'><dd>{N}</dd></div>
+                        <div className='grid-item'><dd>{phiN}</dd></div>
+                        <div className='grid-item'><dd>{E}</dd></div>
+                        <div className='grid-item'><dd>{D}</dd></div>
+                    </div>
+                </section>
             </div>
 
-            {E && N && D && (
-                <Encryption E={E} N={N} D={D} encryptedNum={undefined} inputNumProp={-1} />
-            )}
+            <div>
+                {E && N && D && (
+                    <Encryption E={E} N={N} D={D} encryptedNum={undefined} inputNumProp={-1} />
+                )}                
+            </div>
         </div>
     );
 };
