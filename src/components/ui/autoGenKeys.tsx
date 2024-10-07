@@ -62,7 +62,7 @@ const AutoGenKeys: React.FC = ({...props}) => {
                         <div className='grid-item'><dt>Prime1:</dt></div>
                         <div className='grid-item'><dt>Prime2:</dt></div>
                         <div className='grid-item'><dt>N:</dt></div>
-                        <div className='grid-item'><dt>&#x3D5; (PhiN):</dt></div>
+                        <div className='grid-item'><dt>&#x3D5;(N):</dt></div>
                         <div className='grid-item'><dt>E:</dt></div>
                         <div className='grid-item'><dt>D:</dt></div>
                     </div>
