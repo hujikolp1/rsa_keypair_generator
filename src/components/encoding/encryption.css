@@ -1,0 +1,21 @@
+.cryptContainer {
+    display: grid;
+    grid-template-columns: 1fr; /* Default: 1 column */
+    gap: 20px;
+}
+
+.decryptionWrapper {
+    display: none; /* Initially hidden */
+}
+
+.decryptionWrapper.active {
+    display: grid; /* Show when the decryption is active */
+    grid-template-columns: 1fr 1fr; /* Switch to 2 columns */
+    gap: 20px;
+}
+
+/* Additional styles for the encryption and decryption sections */
+#numToEncryptForm,
+.encryptedNumsDisplay {
+    grid-column: 1 / -1; /* Make them span the entire width in a 1 column layout */
+}

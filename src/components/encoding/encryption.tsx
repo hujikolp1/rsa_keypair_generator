@@ -2,6 +2,7 @@ import React from '../../../pkgs/react';
 import { useState, useEffect } from '../../../pkgs/react';
 import Decryption from './decryption.tsx'; 
 
+import './encryption.css';
 
 const Encryption = (props: {
         N: number; 
@@ -61,7 +62,7 @@ const Encryption = (props: {
     };
 
     return (
-        <div className='encryptionContainer'>
+        <div className='cryptContainer'>
             <form id='numToEncryptForm' onSubmit={handleEncryption}>
                 <div> Encrypt Your Number </div>
                 <input 
@@ -70,18 +71,30 @@ const Encryption = (props: {
                     onChange={handleNumChange} 
                     placeholder="Enter a number to encrypt"
                 />
-
                 <button type='submit'>
                     <div>ENCRYPT</div>
                 </button>  
             </form>
+
             <div className='encryptedNumsDisplay'>
                 <div>Your Original Num = {inputNumProp || 'N/A'}</div>
                 <div>Your Encrypted Num = {encryptedNum ? String(encryptedNum) : 'N/A'} </div>
             </div>
-            <div>{encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum} inputNumProp={inputNumProp} decryptedNum={undefined} />}
+
+            <div className={`decryptionWrapper ${encryptedNum ? 'active' : ''}`}>
+                {encryptedNum && (
+                    <Decryption 
+                        E={props.E} 
+                        N={props.N} 
+                        D={props.D} 
+                        encryptedNum={encryptedNum} 
+                        inputNumProp={inputNumProp} 
+                        decryptedNum={undefined} 
+                    />
+                )}
             </div>
         </div>
+
     );
 };
 

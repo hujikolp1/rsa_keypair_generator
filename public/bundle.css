@@ -1,3 +1,22 @@
+/* src/components/encoding/encryption.css */
+.cryptContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.decryptionWrapper {
+  display: none;
+}
+.decryptionWrapper.active {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+#numToEncryptForm,
+.encryptedNumsDisplay {
+  grid-column: 1 / -1;
+}
+
 /* src/components/ui/autoGenKeys.css */
 .show-formulas-btn {
   display: block;
