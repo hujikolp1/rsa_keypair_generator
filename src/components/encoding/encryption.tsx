@@ -50,8 +50,8 @@ const Encryption = (props: {
             return; 
         }
 
-        if (numToEncrypt >= (props.N)) {
-            alert('Number to Encrypt must be less than N - 2'); 
+        if (numToEncrypt >= (props.N - 1)) {
+            alert('Number to Encrypt must be less than N - 1'); 
             return; 
         }
 
