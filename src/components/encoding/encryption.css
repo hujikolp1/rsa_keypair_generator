@@ -1,16 +1,16 @@
 .cryptContainer {
     display: grid;
-    grid-template-columns: 1fr; /* Default: 1 column */
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
 .decryptionWrapper {
-    display: none; /* Initially hidden */
+    display: none;
 }
 
 .decryptionWrapper.active {
-    display: grid; /* Show when the decryption is active */
-    grid-template-columns: 1fr 1fr; /* Switch to 2 columns */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
