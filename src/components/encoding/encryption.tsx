@@ -50,24 +50,19 @@ const Encryption = (props: {
             return; 
         }
 
-        if (numToEncrypt >= (props.N - 2)) {
+        if (numToEncrypt >= (props.N)) {
             alert('Number to Encrypt must be less than N - 2'); 
             return; 
         }
 
         const encrypt = await handleSetEncryption(); 
         setEncryptedNum(encrypt); 
-        setBigNumInput(''); // Reset input after encryption
+        setBigNumInput('');
     };
 
     return (
         <div className='encryptionContainer'>
             <form id='numToEncryptForm' onSubmit={handleEncryption}>
-                <div style={{ border: '3px solid black' }}>
-                    <div>E = {props.E}</div>
-                    <div>N = {props.N}</div> 
-                    <div>D = {props.D}</div>  
-                </div> 
                 <h3> Encrypt Your Number </h3>
                 <input 
                     id='numInputTextField' 
