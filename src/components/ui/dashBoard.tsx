@@ -1,5 +1,7 @@
 import React from '../../../pkgs/react'
 
+import './dashboard.css';
+
 const DashBoard = () => {
 
     return(

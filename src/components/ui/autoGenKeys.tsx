@@ -53,15 +53,10 @@ const AutoGenKeys: React.FC = ({...props}) => {
         return () => {};
     }, []); 
 
-    const clickShowFormulas = () => {
-        setShowFormulas(prev => !prev);
-    };
 
     return (
         <div className='autoGenKeys'>
-            <button className='show-formulas-btn' onClick={clickShowFormulas}>Show Formula</button>
-
-            <div className='formulasTable' style={{ display: showFormulas ? 'inline-block' : 'none' }}>
+            <div className='formulasTable'>
                 <section className='formulas-grid-layout'>
                     <div className='keys-column'>
                         <div className='grid-item'><dt>Prime1:</dt></div>

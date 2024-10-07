@@ -1,7 +1,7 @@
 /* src/components/encoding/encryption.css */
 .cryptContainer {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 .decryptionWrapper {
@@ -14,14 +14,11 @@
 }
 
 /* src/components/ui/autoGenKeys.css */
-.show-formulas-btn {
-  display: block;
-}
 .formulas-grid-layout {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 20px;
-  margin: 20px auto;
+  margin: 16px 8px;
   max-width: 80%;
 }
 .keys-column,
@@ -42,11 +39,20 @@ dd {
   font-weight: normal;
 }
 
+/* src/components/ui/dashboard.css */
+.nav {
+  text-align: center;
+}
+.nav a {
+  display: inline-block;
+  padding: 10px 20px;
+}
+
 /* src/App.css */
 :root {
   --main-white: #f0f0f0;
   --main-gold: #caac00;
   --main-blue: #45567d;
   --main-gray: #303841;
-  font-size: 36px;
+  font-size: 16px;
 }
