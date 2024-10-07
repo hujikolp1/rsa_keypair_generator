@@ -63,7 +63,7 @@ const Encryption = (props: {
     return (
         <div className='encryptionContainer'>
             <form id='numToEncryptForm' onSubmit={handleEncryption}>
-                <h3> Encrypt Your Number </h3>
+                <div> Encrypt Your Number </div>
                 <input 
                     id='numInputTextField' 
                     value={bigNumInput} 
@@ -75,9 +75,12 @@ const Encryption = (props: {
                     <div>ENCRYPT</div>
                 </button>  
             </form>
-            <h5>Your Original Num = {inputNumProp || 'N/A'}</h5>
-            <h5>Your Encrypted Num = {encryptedNum ? String(encryptedNum) : 'N/A'} </h5>
-            {encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum} inputNumProp={inputNumProp} decryptedNum={undefined} />}
+            <div className='encryptedNumsDisplay'>
+                <div>Your Original Num = {inputNumProp || 'N/A'}</div>
+                <div>Your Encrypted Num = {encryptedNum ? String(encryptedNum) : 'N/A'} </div>
+            </div>
+            <div>{encryptedNum && <Decryption E={props.E} N={props.N} D={props.D} encryptedNum={encryptedNum} inputNumProp={inputNumProp} decryptedNum={undefined} />}
+            </div>
         </div>
     );
 };

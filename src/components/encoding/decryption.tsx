@@ -2,7 +2,7 @@ import React, { useState , useEffect } from '../../../pkgs/react';
 import OutputDecrypted from './outputDecrypted.tsx'; 
 
 
-const Decryption = (props: { N: number; D: number; encryptedNum: any; inputNumProp: any; }) => {
+const Decryption = (props: { N: number; D: number; E: number; encryptedNum: any; inputNumProp: any; }) => {
     const [decryptedNum, setDecryptedNum] = useState<number>(); 
     const [changeD, setChangeD] = useState<BigInt>(BigInt(props.D)); // Store D as BigInt
 
