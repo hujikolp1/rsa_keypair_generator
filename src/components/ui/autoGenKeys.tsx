@@ -59,37 +59,26 @@ const AutoGenKeys: React.FC = ({...props}) => {
 
     return (
         <div className='autoGenKeys'>
-            <button class='show-formulas-btn' onClick={clickShowFormulas}>Show Formula</button>
+            <button className='show-formulas-btn' onClick={clickShowFormulas}>Show Formula</button>
+
             <div className='formulasTable' style={{ display: showFormulas ? 'inline-block' : 'none' }}>
                 <section className='formulas-grid-layout'>
-                    <article className='rsa-values'>
-                        <dl>
-                            <div className='grid-item'>
-                                <dt>Prime1:</dt>
-                                <dd>{p1}</dd>
-                            </div>
-                            <div className='grid-item'>
-                                <dt>Prime2:</dt>
-                                <dd>{p2}</dd>
-                            </div>
-                            <div className='grid-item'>
-                                <dt>N:</dt>
-                                <dd>{N}</dd>
-                            </div>
-                            <div className='grid-item'>
-                                <dt>&#x3D5; (PhiN):</dt>
-                                <dd>{phiN}</dd>
-                            </div>
-                            <div className='grid-item'>
-                                <dt>E:</dt>
-                                <dd>{E}</dd>
-                            </div>
-                            <div className='grid-item'>
-                                <dt>D:</dt>
-                                <dd>{D}</dd>
-                            </div>
-                        </dl>
-                    </article>
+                    <div className='keys-column'>
+                        <div className='grid-item'><dt>Prime1:</dt></div>
+                        <div className='grid-item'><dt>Prime2:</dt></div>
+                        <div className='grid-item'><dt>N:</dt></div>
+                        <div className='grid-item'><dt>&#x3D5; (PhiN):</dt></div>
+                        <div className='grid-item'><dt>E:</dt></div>
+                        <div className='grid-item'><dt>D:</dt></div>
+                    </div>
+                    <div className='values-column'>
+                        <div className='grid-item'><dd>{p1}</dd></div>
+                        <div className='grid-item'><dd>{p2}</dd></div>
+                        <div className='grid-item'><dd>{N}</dd></div>
+                        <div className='grid-item'><dd>{phiN}</dd></div>
+                        <div className='grid-item'><dd>{E}</dd></div>
+                        <div className='grid-item'><dd>{D}</dd></div>
+                    </div>
                 </section>
             </div>
 
@@ -98,7 +87,6 @@ const AutoGenKeys: React.FC = ({...props}) => {
                     <Encryption E={E} N={N} D={D} encryptedNum={undefined} inputNumProp={-1} />
                 )}                
             </div>
-
         </div>
     );
 };
