@@ -11,7 +11,7 @@ import Encryption from '../encoding/encryption.tsx';
 import './autoGenKeys.css';
 
 
-const AutoGenKeys: React.FC = ({...props}) => {
+const AutoGenKeys: React.FC = ({ keyVersion, handleRegenerateKeys }) => {
     const [p1, setP1] = useState<number | null>(null);
     const [p2, setP2] = useState<number | null>(null);
     const [N, setN] = useState<number | null>(null); 
@@ -21,7 +21,6 @@ const AutoGenKeys: React.FC = ({...props}) => {
 
     useEffect(() => {
         const generatedPrimeArray: number[] = genPrimeArr(); 
-
         const generatedRandomPrimes: number[] = genRandomPrimes(generatedPrimeArray); 
         setP1(generatedRandomPrimes[0]);
         setP2(generatedRandomPrimes[1]); 
@@ -42,11 +41,10 @@ const AutoGenKeys: React.FC = ({...props}) => {
             setD(generatedD);
         } else {
             console.error('E and D are the same ... regenerating ... ');
-            window.location.reload(); 
+            handleRegenerateKeys();
         }
 
-        return () => {};
-    }, []); 
+    }, [keyVersion]);  // Dependency on keyVersion
 
 
     return (
