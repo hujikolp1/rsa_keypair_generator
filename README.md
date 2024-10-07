@@ -1,5 +1,3 @@
-# Live Mode Here: https://rsakeygenerator-b7a79.web.app/
-
 # RSA Public and Private Encryption Key Pair Generator
 This TypsScript program will automatically generate pairs for you based on primes less than 149.
 Of course, you can increase this range of primes used but it will take up more computation time and energy. To change this range go to ```/src/components/mainFunctions``` and increase or decrease the prime numbers in the file ```genPrimeArr.tsx```. Once your encryption pairs are good to go you can use them for encryption and decryption. <br> 
@@ -29,6 +27,8 @@ TypeScript was used in this application, as well as a compiler target for ES2020
 * Run the command in the `BUILD` file
 * You can use another bundler of your liking but will need to replace `esbuild` with your choice
 
-```TS Notes: ```
+### TypeScript Config Notes
 - The tsconfig.json file property "noImplicitAny" is false
 - The tsconfig.json compilerOptions "target" is ES2020
+
+# Live Mode Here: https://rsakeygenerator-b7a79.web.app/
