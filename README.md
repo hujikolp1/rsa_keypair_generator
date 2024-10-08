@@ -1,9 +1,15 @@
 # RSA Public and Private Encryption Key Pair Generator
-This TypsScript program will automatically generate pairs for you based on primes less than 149.
-Of course, you can increase this range of primes used but it will take up more computation time and energy. To change this range go to ```/src/components/mainFunctions``` and increase or decrease the prime numbers in the file ```genPrimeArr.tsx```. Once your encryption pairs are good to go you can use them for encryption and decryption. <br> 
+This TypeScript program will automatically generate pairs for you based the upper bounds prime integer you input, otherwise the upper bound prime will be set to a default of 149, which is computationally inexpensive and should work for most modern browsers in a short amount of time.
+Of course, you can increase the upper bound prime used, and your keypairs will be more secure, but it will take up more computation time and energy. Once your encryption pairs are good to go you can use them for encryption and decryption of integers. <br> 
+
+# Roadmap (October 2024 update)
+* Expand encryption and decryption capabilities for use with string data types. Achieve this by chunking.
+* Explore other data types to encrypt and decrypt (images, binary files, etc.).
+* Export the RSA functional code into an ES module for use outside of the browser.
+* Achieve the same cryptographic ability as widely used RSA libraries, provide open-sourced education and transparency, and meet standards and protocols (RSA-OAEP: Optimal Asymmetric Encryption Padding). 
 
 ## The RSA encryption and decryption algorithm works as follows: 
-You have an unencrypted integer number, say 4. <br>
+You have an plaintext integer, say 4. <br>
 Raise this number to the power of key E, say 5. So you get 1,024. This is your encrypted number. <br>
 This can be decrypted by raising the encrypted number to D, say 11, and taking its modulus N. <br>
 1,024 to the 11th power is 1.298074214634 e 33, and modulus 14 this is 4. <br>
