@@ -19,7 +19,7 @@ export const genPrimeArr = (): number[] => {
     let firstN: number;
 
     while (true) {
-        let input = prompt("Enter the first N number to check primes (default is 149):");
+        let input = prompt("Enter the upper bound prime number (or CANCEL for the default of 149):");
         firstN = parseInt(input || "149", 10);
 
         if (isNaN(firstN) || firstN < 11) {
