@@ -25,12 +25,30 @@ const Encryption = (props: {
         setBigNumInput(placeholder); 
     };
 
+    const modExp = (base: bigint, exponent: bigint, mod: bigint): bigint => {
+        let result = BigInt(1);
+        base = base % mod;
+    
+        while (exponent > BigInt(0)) {
+            if (exponent % BigInt(2) === BigInt(1)) {
+                result = (result * base) % mod;
+            }
+            exponent = exponent >> BigInt(1); // Divide exponent by 2
+            base = (base * base) % mod;
+        }
+    
+        return result;
+    };
+    
+    
+
     const handleSetEncryption = (): Promise<bigint> => {
         return new Promise((res, rej) => {
             try {
                 const bigE = BigInt(props.E); 
                 const bigN = BigInt(props.N); 
-                const encrypt = (BigInt(bigNumInput) ** bigE) % bigN;
+                const bigNumInputBigInt = BigInt(bigNumInput);
+                const encrypt = modExp(bigNumInputBigInt, bigE, bigN);
                 res(encrypt);
             } catch (error) {
                 console.error('Encryption error: ', error);
@@ -42,7 +60,6 @@ const Encryption = (props: {
     const handleEncryption = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); 
 
-        // Convert bigNumInput to BigInt and check the value
         let numToEncrypt: bigint;
         try {
             numToEncrypt = BigInt(bigNumInput);
